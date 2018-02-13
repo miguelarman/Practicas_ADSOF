@@ -1,5 +1,3 @@
-import java.util.*; //importamos todas las clases del paquete java.util
-
 /*
 * Esta aplicación crea el triángulo de Tartaglia de un número de filas pasado como argumento
 * <p>Para calcularlo llama a las funciones de la clase Combinatoria</p>
@@ -19,7 +17,6 @@ public class Tartaglia {
 	
 	private Combinatoria c;
 	private int n;
-	private Map<Integer, Long> cache = new HashMap<>();
 
 
 	/**
@@ -33,17 +30,6 @@ public class Tartaglia {
 		this.n = n;
 	}
 
-	/*
-	*
-	*/
-	private int posicion(int n, int k) {
-		int pos;
-
-		pos = n*(n+1)/2 + k;
-
-		return pos;
-	}
-
 
 	/*
 	* Genera la cadena de caracteres que al ser imprimida genera el triángulo
@@ -51,21 +37,12 @@ public class Tartaglia {
 	public String toString() {
 		int i;
 		int j;
-		long valor;
 		String str = "";
+
 
 		for (i = 0; i < n; i++) {
 			for (j = 0; j <= i; j++) {
-
-				if (cache.containsKey(posicion(i, j))) {	// Si ya está calculado el valor lo concatenamos ...
-					str += cache.get(posicion(i, j)) + " ";	
-				} else {									//... si no calculamos el valor y lo guardamos en todas las posiciones útiles
-					valor = (Long) c.combinaciones(i, j);
-					cache.put(posicion(i, j), valor);
-					cache.put(posicion(i, i - j), valor);
-
-					str += valor + " ";
-				}
+				str += c.combinaciones(i, j) + " ";
 			}
 
 			str += "\n";

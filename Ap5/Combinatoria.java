@@ -1,3 +1,6 @@
+import java.util.*; 
+
+
 /**
 * Esta aplicación calcula el número de combinaciones sin repetición de n elementos
 * tomados de k en k.
@@ -10,7 +13,18 @@
 *
 */
 
-public class Combinatoria {
+public class Combinatoria{
+
+	 
+	private Map<Integer, Long> cache = new HashMap<>();
+
+	private int posicion(int n, int k){
+		
+		int pos;
+		pos= n*(n+1)/2 + k;
+		return pos;
+
+	} 
 	/*
 	* Si la clase tuviera atributos, los declararíamos aquí, como
 	* private Tipo1 atributo1;
@@ -45,13 +59,27 @@ public class Combinatoria {
 	* @return valor del coeficiente binomial (n, k)
 	*/
 	public long combinaciones(int n, int k){
+
+		long num;
 		//Primero comprobamos si los argumentos son válidos
 		if (n<0 || k <0) throw new IllegalArgumentException("n y k han de ser positivos");
 		//Casos base
 		else if (k == 0 || n==k ) return 1; //caso base para 1
 		else if (k > n) return 0; //caso base para 0
 		//caso general
-		else return combinaciones(n-1, k-1)+ combinaciones (n-1, k);
+		else{
+			if (cache.containsKey(posicion(n, k))){
+				return(cache.get(posicion(n, k)));
+			}
+			else{
+				num =  combinaciones(n-1, k-1)+ combinaciones (n-1, k);
+				cache.put(posicion(n, k), num);
+				return num;
+			}
+
+
+			
+		} 
 	}
 
 	/**
