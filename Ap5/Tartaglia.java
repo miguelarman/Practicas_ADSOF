@@ -1,9 +1,7 @@
-/*
+/**
 * Esta aplicacion crea el triangulo de Tartaglia de un numero de filas pasado como argumento
 * <p>Para calcularlo llama a las funciones de la clase Combinatoria</p>
-* <p><b>Nota</b>: Esta implementacion no es muy eficiente, al hacer muchos calculos redundantes.
-* Se aconseja usar valores pequeños de n y k, entre 0 y 30</p>
-*
+* 
 * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) y Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
 */
 
@@ -31,7 +29,7 @@ public class Tartaglia {
 	}
 
 
-	/*
+	/**
 	* Genera la cadena de caracteres que al ser imprimida genera el triangulo
 	*/
 	public String toString() {
