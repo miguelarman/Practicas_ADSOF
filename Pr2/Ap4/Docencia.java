@@ -4,12 +4,13 @@ import java.util.*;
 
 /**
 * Esta clase almacena los datos de un periodo de docencia de un Profesor en una Autoescuela en concreto
-* Pueden crearse más de un periodo de docencia con un mismo profesor o autoescuela
+* Pueden crearse mas de un periodo de docencia con un mismo profesor o autoescuela
+* @author Miguel Arconada (miguel.arconada@estudiante.uam.es) y Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
 */
 
 
 
-public class Docencia{
+public class Docencia {
 
 	private Fecha fechaInicio;
 	private Fecha fechaFin;
@@ -19,11 +20,11 @@ public class Docencia{
 
 
 	/**
-	* Método constructor de la clase. Devuelve un objeto de la clase Docencia que contiene lo pasado como argumentos:
-	* @args anyo Año de la fecha de inicio del periodo de docencia
+	* Metodo constructor de la clase. Devuelve un objeto de la clase Docencia que contiene lo pasado como argumentos:
+	* @args anyo Anyo de la fecha de inicio del periodo de docencia
 	* @args mes Mes de la fecha de inicio del periodo de docencia
-	* @args dia Día de la fecha de inicio del periodo de docencia
-	* @args docente Profesor del que se está creando el periodo de docencia
+	* @args dia Dia de la fecha de inicio del periodo de docencia
+	* @args docente Profesor del que se esta creando el periodo de docencia
 	* @args autoescuela Autoescuela en la que va a trabajar el profesor
 	*/
 	public Docencia(int anyo, int mes, int dia, Profesor docente, Autoescuela autoescuela) { 
@@ -35,11 +36,11 @@ public class Docencia{
 
 
 	/**
-	* Método que termina un periodo de docencia, estableciendo un valor para el atributo fechaFIn, que hasta el momento era null
-	* @args anyo Año de la fecha de finalización del periodo de docencia
-	* @args mes Mes de la fecha de finalización del periodo de docencia
-	* @args dia Día de la fecha de finalización del periodo de docencia
-	* @return un valor booleano que representa si la función se ha llevado a cabo
+	* Metodo que termina un periodo de docencia, estableciendo un valor para el atributo fechaFIn, que hasta el momento era null
+	* @args anyo Anyo de la fecha de finalizacion del periodo de docencia
+	* @args mes Mes de la fecha de finalizacion del periodo de docencia
+	* @args dia Dia de la fecha de finalizacion del periodo de docencia
+	* @return un valor booleano que representa si la funcion se ha llevado a cabo
 	*/
 	public Boolean finDocencia(int anyo, int mes, int dia){
 		
@@ -55,7 +56,7 @@ public class Docencia{
 
 
 	/**
-	* Método getter de la Autoescuela del periodo de docencia
+	* Metodo getter de la Autoescuela del periodo de docencia
 	* @return el atributo Autoescuela del objeto de Docencia
 	*/
 	public Autoescuela getAutoescuelaDocencia(){
@@ -64,7 +65,7 @@ public class Docencia{
 
 
 	/**
-	* Método getter de la fecha de inicio del periodo de docencia
+	* Metodo getter de la fecha de inicio del periodo de docencia
 	* @return el atributo fechaInicio del objeto de Docencia
 	*/
 	public Fecha getFechaInicioDocencia(){
@@ -73,7 +74,7 @@ public class Docencia{
 
 
 	/**
-	* Método getter de la fecha de fin del periodo de docencia
+	* Metodo getter de la fecha de fin del periodo de docencia
 	* @return el atributo fechaFin del objeto de Docencia
 	*/
 	public Fecha getFechaFinDocencia(){
