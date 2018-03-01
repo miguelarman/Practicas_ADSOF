@@ -1,6 +1,12 @@
 import java.util.*;
 
+/**
+* 
+*****/
+	
 public class Autoescuela{
+
+	
 	private String codigoInterno;
 	private String nombre;
 	private String direccion;
