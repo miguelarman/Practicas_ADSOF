@@ -20,12 +20,14 @@ public class Docencia{
 
 	/**
 	* Método constructor de la clase. Devuelve un objeto de la clase Docencia que contiene lo pasado como argumentos:
-	* @args fechaInicio Fecha de inicio del periodo de docencia
+	* @args anyo Año de la fecha de inicio del periodo de docencia
+	* @args mes Mes de la fecha de inicio del periodo de docencia
+	* @args dia Día de la fecha de inicio del periodo de docencia
 	* @args docente Profesor del que se está creando el periodo de docencia
 	* @args autoescuela Autoescuela en la que va a trabajar el profesor
 	*/
-	public Docencia(Fecha fechaInicio, Profesor docente, Autoescuela autoescuela) { 
-		this.fechaInicio = fechaInicio;
+	public Docencia(int anyo, int mes, int dia, Profesor docente, Autoescuela autoescuela) { 
+		this.fechaInicio = new Fecha(anyo, mes, dia);
 		this.docente = docente;
 		this.autoescuela = autoescuela;
 		fechaFin = null;
@@ -34,10 +36,14 @@ public class Docencia{
 
 	/**
 	* Método que termina un periodo de docencia, estableciendo un valor para el atributo fechaFIn, que hasta el momento era null
-	* @args fechaFin Fecha de finalización del periodo de docencia
+	* @args anyo Año de la fecha de finalización del periodo de docencia
+	* @args mes Mes de la fecha de finalización del periodo de docencia
+	* @args dia Día de la fecha de finalización del periodo de docencia
 	* @return un valor booleano que representa si la función se ha llevado a cabo
 	*/
-	public Boolean finDocencia(Fecha fechaFin){
+	public Boolean finDocencia(int anyo, int mes, int dia){
+		
+		Fecha fechaFin = new Fecha(anyo, mes, dia);
 
 		if(this.fechaFin != null || fechaFin.isFechaValida() == false){
 			return false;

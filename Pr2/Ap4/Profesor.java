@@ -1,25 +1,19 @@
 import java.util.*;
-public class Profesor {
 
-	private String dni;
-	private String nombre;
-	private String apellidos;
-	private String telefono;
+
+public class Profesor extends Persona{
+
 	private String numeroSS;
 	private int antiguedad;
 	private float sueldoBase;
 	private List<String> carnetImparte;
-
 	private List<Docencia> datosDocencia;
 
 
 
 
 	public Profesor(String dni, String nombre, String apellidos, String telefono, String numeroSS, int antiguedad, float sueldoBase, List<String> carnetImparte) { 
-		this.dni = dni;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.telefono = telefono;
+		super.Persona(dni, nombre, apellidos, telefono);
 		this.numeroSS = numeroSS;
 		this.antiguedad = antiguedad;
 		this.sueldoBase = sueldoBase;
@@ -44,26 +38,34 @@ public class Profesor {
 		return;
 	}
 
-	public String getDni(){
-		return this.dni;
-	}
 
-	public Fecha getFechaInicio(Autoescuela a){
+	public List<Fecha> getFechaInicio(Autoescuela a){
+		
+		List<Fecha> fechas = new ArrayList<Fecha>();
+		
 		for(Docencia d: datosDocencia){
 			if(d.getAutoescuelaDocencia() == a){
-				return d.getFechaInicioDocencia();
+				Fecha fechaAux = d.getFechaInicioDocencia();
+				fechas.add(fechaAux); 
 			}
 
 		}
-		return null;
+		
+		return fechas;
 	}
-	public Fecha getFechaFin(Autoescuela a){
+	
+	public List<Fecha> getFechaFin(Autoescuela a){
+
+		List<Fecha> fechas = new ArrayList<Fecha>();
+
 		for(Docencia d: datosDocencia){
 			if(d.getAutoescuelaDocencia() == a){
-				return d.getFechaFinDocencia();
+				fechaAux = d.getFechaFinDocencia();
+				fechas.add(fechaAux);
 			}
 
 		}
-		return null;
+		
+		return fechas;
 	}
 }

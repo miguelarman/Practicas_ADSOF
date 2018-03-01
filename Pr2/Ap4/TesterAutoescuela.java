@@ -18,6 +18,10 @@ public class TesterAutoescuela {
 
 		a.anadirProfesor("73636488X", "Antonio", "Pérez García", "654321098", "29348934", 0, 900, carnet, 1998, 12, 30);
 		aux = a.finalizarDocente(1999, 12, 30, "73636488X");
+		a.anadirProfesor("73636488X", "Antonio", "Pérez García", "654321098", "29348934", 0, 900, carnet, 2000, 12, 30);
+		aux = a.finalizarDocente(2001, 12, 30, "73636488X");
+		
+		
 
 		if(aux == false){
 			System.out.println(1);
@@ -27,10 +31,9 @@ public class TesterAutoescuela {
 		s = a.getFechaDocencia("73636488X");
 
 		if (s == null){
-			System.out.println(2);
 			return;
 		}		
 
-		System.out.println("El profesor Antonio Pérez García trabajó en la autoescuela " + a.getNombreAutoescuela() + " " + s);
+		System.out.println("El profesor " + a.getNombreCompleto("73636488X") + " trabajó en la autoescuela " + a.getNombreAutoescuela() + " " + s);
 	}
 }
