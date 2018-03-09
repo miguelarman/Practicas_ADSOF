@@ -1,16 +1,21 @@
 package cine;
-import java.util.Date;
+import java.util.Calendar;
 
 public class Sesion {
 	
-	private Date fecha;
+	private Calendar fecha;
 	private Pelicula pelicula;
-	private int butacasDisponibles;
+	private Integer butacasDisponibles;
 	private Sala sala;
 	
 
-	public Sesion(Date fecha, Pelicula pelicula, Sala sala) {
-		this.fecha = fecha;
+	public Sesion(Integer anyo, Integer mes, Integer dia, Integer hora, Integer minuto, Pelicula pelicula, Sala sala) {
+		this.fecha = Calendar.getInstance();
+		this.fecha.set(Calendar.YEAR, anyo);
+		this.fecha.set(Calendar.MONTH, mes);
+		this.fecha.set(Calendar.DAY_OF_MONTH, dia);
+		this.fecha.set(Calendar.HOUR, hora);
+		this.fecha.set(Calendar.MINUTE, minuto);
 		this.pelicula = pelicula;
 		this.butacasDisponibles = sala.getButacas();
 		this.sala = sala;
@@ -23,7 +28,7 @@ public class Sesion {
 	}
 
 
-	public Date getFecha() {
+	public Calendar getFecha() {
 		return fecha;
 	}
 
@@ -45,7 +50,7 @@ public class Sesion {
 	
 	
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
 
@@ -69,10 +74,11 @@ public class Sesion {
 	
 	
 	
-	public Date fin() {
-		Date fechaAux = (Date)fecha.clone();
+	
+	public Calendar fin() {
+		Calendar fechaAux = (Calendar)fecha.clone();
 		
-		fechaAux.setMinutes(fechaAux.getMinutes() + pelicula.getDuracion());
+		fechaAux.add(Calendar.MINUTE, pelicula.getDuracion());
 		
 		return fechaAux;
 	}

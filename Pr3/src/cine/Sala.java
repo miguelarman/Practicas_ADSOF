@@ -4,19 +4,21 @@ import java.util.*;
 
 public class Sala {
 	
-	private static int identificador = 0;
+	private static int contador = 0;
+	private int identificador;
 	private int butacas;
 	private List<Sesion> sesiones;
 	
 	
 	public Sala(int butacas) {
 		this.butacas = butacas;
-		identificador++;
+		contador++;
+		identificador = identificador + contador;
 		this.sesiones = new ArrayList<Sesion>();
 	}
 
 
-	public static int getIdentificador() {
+	public int getIdentificador() {
 		return identificador;
 	}
 
