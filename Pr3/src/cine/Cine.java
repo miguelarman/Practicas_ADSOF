@@ -65,31 +65,26 @@ public class Cine {
 		this.direccion = direccion;
 	}
 
-	/**
-	 * @param listaPeliculas the listaPeliculas to set
-	 */
-	public void setListaPeliculas(List<Pelicula> listaPeliculas) {
-		this.listaPeliculas = listaPeliculas;
-	}
 
-	/**
-	 * @param listaEntradas the listaEntradas to set
-	 */
-	public void setListaEntradas(List<Entrada> listaEntradas) {
-		this.listaEntradas = listaEntradas;
-	}
+
+
 	
 	public Boolean anadirPelicula(Pelicula peli) {
 		this.listaPeliculas.add(peli);
 		return true;
-		
 	}
+	
 	public Boolean anadirSala(Sala sala) {
 		this.listaSalas.add(sala);
 		return true;
-		
 	}
-	public Boolean anadirSesionToSala(Sesion sesion, int sala) {
+	
+	public Boolean anadirEntrada(Entrada e) {
+		this.listaEntradas.add(e);
+		return true;
+	}
+	
+	public Boolean anadirSesionASala(Sesion sesion, int sala) {
 		for(Sala s: this.listaSalas) {
 			if (s.getIdentificador() == sala) {
 				s.anadirSesion(sesion);
@@ -99,12 +94,63 @@ public class Cine {
 		}
 		return false;
 	}
-	public Boolean anadirPeliculaToSesion(String peli, Sesion s) {
+	
+	
+	public Boolean anadirPeliculaASesion(String peli, Sesion s) {
 		
-		return true;
+		for (Pelicula p : listaPeliculas) {
+			if (p.getTitulo() == peli) {
+				s.setPelicula(p);
+				
+				return true;
+			}
+		}
 		
+		return false;
 	}
 	
 	
-
+	public Entrada venderEntrada(Sesion s, Float precio) {
+		
+		Calendar fecha = s.getFecha();
+		Entrada entrada;
+		
+		if (EntradaDiaEspectador.isFechaEspectador(fecha)) {
+			entrada = new EntradaDiaEspectador(s, precio);
+		} else {
+			entrada = new Entrada(s, precio);
+		}
+		
+		this.anadirEntrada(entrada);
+		
+		return entrada;
+	}
+	
+	public Float informacionRecaudacion() {
+		
+		Float total = (float) 0;
+		
+		for (Entrada e : this.listaEntradas) {
+			total += e.getPrecio();
+		}
+		
+		return total;
+	}
+	
+	public List<Pelicula> informacionCartelera() {
+		return this.getListaPeliculas();
+	}
+	
+	public List<Sesion> informacionSesiones() {
+		
+		List<Sesion> sesiones = new ArrayList<Sesion>();
+		
+		for (Sala s : listaSalas ) {
+			sesiones.addAll(s.getSesiones());
+		}
+		
+		return sesiones;
+		
+	}
+	
 }

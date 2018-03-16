@@ -3,10 +3,19 @@ package cine;
 public class Entrada {
 	private Sesion sesion;
 	private Float precio;
-	
+
 	public Entrada(Sesion sesion, Float precio) {
-		this.sesion = sesion;
-		this.precio = precio;
+
+		if (sesion.getButacasDisponibles() == 0) {
+			return;
+		} else {
+
+			this.sesion = sesion;
+			this.precio = precio;
+			
+			this.sesion.actualizarButacasVendidas();
+
+		}
 	}
 
 	/**
@@ -22,8 +31,5 @@ public class Entrada {
 	public Float getPrecio() {
 		return precio;
 	}
-	
-	
-	
 
 }

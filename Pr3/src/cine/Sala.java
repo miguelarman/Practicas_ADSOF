@@ -13,7 +13,7 @@ public class Sala {
 	public Sala(int butacas) {
 		this.butacas = butacas;
 		contador++;
-		identificador = identificador + contador;
+		identificador = contador;
 		this.sesiones = new ArrayList<Sesion>();
 	}
 
@@ -43,7 +43,7 @@ public class Sala {
 	
 	public Boolean anadirSesion(Sesion sesion) {
 		for (Sesion sesionAux : sesiones) {
-			if (sesionAux.fin().after(sesion.getFecha()) || sesionAux.equals(sesion)) {
+			if (sesionAux.finalSesion().after(sesion.getFecha()) || sesionAux.equals(sesion)) {
 				return false;
 			}
 		}

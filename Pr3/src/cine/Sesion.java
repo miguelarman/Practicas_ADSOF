@@ -1,13 +1,13 @@
 package cine;
+
 import java.util.Calendar;
 
 public class Sesion {
-	
+
 	private Calendar fecha;
 	private Pelicula pelicula;
 	private Integer butacasDisponibles;
 	private Sala sala;
-	
 
 	public Sesion(Integer anyo, Integer mes, Integer dia, Integer hora, Integer minuto, Pelicula pelicula, Sala sala) {
 		this.fecha = Calendar.getInstance();
@@ -20,67 +20,55 @@ public class Sesion {
 		this.butacasDisponibles = sala.getButacas();
 		this.sala = sala;
 	}
-	
-	
-	public Boolean actualizarButacasVendidas() {
-		
-		return true;
-	}
-
 
 	public Calendar getFecha() {
 		return fecha;
 	}
 
-
 	public Pelicula getPelicula() {
 		return pelicula;
 	}
-
 
 	public int getButacasDisponibles() {
 		return butacasDisponibles;
 	}
 
-
 	public Sala getSala() {
 		return sala;
 	}
-
-	
-	
 
 	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
 
-
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
 	}
-
 
 	public void setButacasDisponibles(int butacasDisponibles) {
 		this.butacasDisponibles = butacasDisponibles;
 	}
 
-
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-	
-	
-	
-	
-	
-	
-	
-	public Calendar fin() {
-		Calendar fechaAux = (Calendar)fecha.clone();
-		
+
+	public Calendar finalSesion() {
+		Calendar fechaAux = (Calendar) fecha.clone();
+
 		fechaAux.add(Calendar.MINUTE, pelicula.getDuracion());
-		
+
 		return fechaAux;
+	}
+	
+	public Boolean actualizarButacasVendidas() {
+
+		if (butacasDisponibles < 1) {
+			return false;
+		} else {
+			butacasDisponibles--;
+			return true;
+		}
 	}
 
 }
