@@ -18,6 +18,19 @@ public class Sala {
 	}
 
 
+	@Override
+	public String toString() {
+		String cadena = "Sala "+ identificador + ":\n" + "Número de butacas: "+ butacas + "\n" + "Sesiones:\n";
+		int i = 1;
+		for(Sesion s: sesiones) {
+			cadena +="\n" + i + ":\n\n";
+			cadena += s.toString();
+			i++;
+		}
+		return cadena;
+	}
+
+
 	public int getIdentificador() {
 		return identificador;
 	}
