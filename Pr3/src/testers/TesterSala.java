@@ -1,7 +1,7 @@
 package testers;
 import cine.*;
 
-public class testerSala {
+public class TesterSala {
 
 	public static void main(String[] args) {
 		

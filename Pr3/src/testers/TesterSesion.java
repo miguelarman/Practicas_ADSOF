@@ -1,7 +1,7 @@
 package testers;
 import cine.*;
 
-public class testerSesion {
+public class TesterSesion {
 
 	public static void main(String[] args) {
 		Sala s = new Sala(1);
