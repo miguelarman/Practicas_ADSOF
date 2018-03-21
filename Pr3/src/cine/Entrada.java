@@ -2,16 +2,15 @@ package cine;
 
 public class Entrada {
 	private Sesion sesion;
-	private Float precio;
+	private static Float precio = (float) 9.0;
 
-	public Entrada(Sesion sesion, Float precio) {
+	public Entrada(Sesion sesion) {
 
 		if (sesion.getButacasDisponibles() == 0) {
 			return;
 		} else {
 
 			this.sesion = sesion;
-			this.precio = precio;
 			
 			this.sesion.actualizarButacasVendidas();
 
@@ -30,6 +29,13 @@ public class Entrada {
 	 */
 	public Float getPrecio() {
 		return precio;
+	}
+	
+	/**
+	 * @param precio
+	 */
+	public static void setPrecio(Float precio) {
+		Entrada.precio = precio;
 	}
 
 }

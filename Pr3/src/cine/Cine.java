@@ -110,15 +110,15 @@ public class Cine {
 	}
 	
 	
-	public Entrada venderEntrada(Sesion s, Float precio) {
+	public Entrada venderEntrada(Sesion s) {
 		
 		Calendar fecha = s.getFecha();
 		Entrada entrada;
 		
 		if (EntradaDiaEspectador.isFechaEspectador(fecha)) {
-			entrada = new EntradaDiaEspectador(s, precio);
+			entrada = new EntradaDiaEspectador(s);
 		} else {
-			entrada = new Entrada(s, precio);
+			entrada = new Entrada(s);
 		}
 		
 		this.anadirEntrada(entrada);
@@ -137,19 +137,30 @@ public class Cine {
 		return total;
 	}
 	
-	public List<Pelicula> informacionCartelera() {
-		return this.getListaPeliculas();
+	public String informacionCartelera() {
+		
+		String cadena = "";
+		
+		for (Pelicula p : this.listaPeliculas) {
+			cadena += "\n" + p;
+		}
+		return cadena;
 	}
 	
-	public List<Sesion> informacionSesiones() {
+	public String informacionSesiones() {
 		
 		List<Sesion> sesiones = new ArrayList<Sesion>();
+		String cadena = "";
 		
 		for (Sala s : listaSalas ) {
 			sesiones.addAll(s.getSesiones());
 		}
 		
-		return sesiones;
+		for (Sesion se : sesiones) {
+			cadena += "\n" + se;
+		}
+		
+		return cadena;
 		
 	}
 	
