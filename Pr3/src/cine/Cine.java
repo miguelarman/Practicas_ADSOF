@@ -248,21 +248,21 @@ public class Cine {
 		
 		String cadena = "" + nombre + ". Dirección: " + direccion + "\n\n";
 		
-		cadena += "\tPelículas: \n";
+		cadena += "Películas: \n";
 		
 		for (Pelicula p : this.listaPeliculas) {
 			cadena += p + "\n";
 		}
 		
 		
-		cadena += "\n\tSalas: \n";
+		cadena += "\nSalas: \n";
 		
 		for (Sala s : this.listaSalas) {
 			cadena += s + "\n";
 		}
 		
 		
-		cadena += "\n\tEntradas: \n";
+		cadena += "\nEntradas: \n";
 		
 		for (Entrada e : this.listaEntradas) {
 			cadena += e + "\n";

@@ -67,6 +67,8 @@ public class TesterCine {
 		
 		c.venderEntrada(s1);
 		System.out.println("Recaudación: " + c.informacionRecaudacion());
+		
+		System.out.println(c);
 
 	}
 
