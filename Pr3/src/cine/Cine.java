@@ -208,7 +208,13 @@ public class Cine {
 	}
 	
 	public Sesion removeEntrada(Entrada e) {
-		
+		Sesion ses;
+		for(Entrada entr: listaEntradas) {
+			if(entr == e) {
+				ses = entr.getSesion();
+				
+			}
+		}
 	}
 	
 }
