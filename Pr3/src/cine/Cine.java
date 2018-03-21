@@ -207,14 +207,25 @@ public class Cine {
 		return -1;
 	}
 	
-	public Sesion removeEntrada(Entrada e) {
+	public Sesion removeEntrada(int id) {
 		Sesion ses;
+		Boolean check;
+		
+		if(Entrada.getContador() < id || id <= 0) {
+			return null;
+		}
 		for(Entrada entr: listaEntradas) {
-			if(entr == e) {
+			if(id == entr.getIdentificador()) {
 				ses = entr.getSesion();
+				check = listaEntradas.remove(entr);
+				if (check == false) {
+					return null;
+				}
+				return ses;
 				
 			}
 		}
+		return null;
 	}
 	
 }

@@ -38,6 +38,10 @@ public class Entrada {
 	public int getIdentificador() {
 		return identificador;
 	}
+	
+	public static int getContador() {
+		return contador;
+	}
 
 	public void setIdentificador(int identificador) {
 		this.identificador = identificador;
