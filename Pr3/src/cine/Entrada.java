@@ -1,6 +1,8 @@
 package cine;
 
 public class Entrada {
+	private static int contador = 0;
+	private int identificador;
 	private Sesion sesion;
 	private static Float precio = (float) 9.0;
 
@@ -9,7 +11,8 @@ public class Entrada {
 		if (sesion.getButacasDisponibles() == 0) {
 			return;
 		} else {
-
+			contador++;
+			setIdentificador(contador);
 			this.sesion = sesion;
 			
 			this.sesion.actualizarButacasVendidas();
@@ -36,6 +39,14 @@ public class Entrada {
 	 */
 	public static void setPrecio(Float precio) {
 		Entrada.precio = precio;
+	}
+
+	public int getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(int identificador) {
+		this.identificador = identificador;
 	}
 
 }

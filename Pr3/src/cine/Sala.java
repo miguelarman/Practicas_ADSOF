@@ -34,6 +34,10 @@ public class Sala {
 	public int getIdentificador() {
 		return identificador;
 	}
+	
+	public static int getContador() {
+		return contador;
+	}
 
 
 	public int getButacas() {

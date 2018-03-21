@@ -164,4 +164,72 @@ public class Cine {
 		
 	}
 	
+	public int removePeliculaCartelera(String titulo) {
+		
+		int numSesiones = 0;
+		Boolean check;
+		
+		for(Pelicula p: listaPeliculas) {
+			if(titulo == p.getTitulo()) {
+				for(Sala s: listaSalas)	{
+					for(Sesion ses: s.getSesiones()) {
+						if(ses.getPelicula() == p) {
+							numSesiones++;
+							check = s.getSesiones().remove(ses);
+							if(check == false) {
+								return -1;
+							}
+						}
+					}
+				}
+				check = listaPeliculas.remove(p);
+				if(check == false) {
+					return -1;
+				}
+				return numSesiones;
+			}
+		}
+		return -1;
+	}
+	
+	public int removeSala(int id) {
+		int numSesiones = 0;
+		Boolean check;
+		
+		if(Sala.getContador() < id || id <= 0) {
+			return -1;
+		}
+		
+		for(Sala s: listaSalas) {
+			if(s.getIdentificador() == id) {
+				for(Sesion ses: s.getSesiones()) {
+					check = s.getSesiones().remove(ses);
+					if(check == false) {
+						return -1;
+					}
+					numSesiones++;				
+				}
+				check = listaSalas.remove(s);
+				if(check == false) {
+					return -1;
+				}
+				return numSesiones;
+			}
+		}
+		
+		return -1;
+	}
+	
+	public Sesion removeEntrada(Entrada e) {
+		Sesion ses;
+		
+		for(Entrada entr: listaEntradas) {
+			if(entr == e) {
+				ses = entr.getSesion();
+				
+			}
+		}
+		
+	}
+	
 }
