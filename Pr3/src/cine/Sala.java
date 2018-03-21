@@ -10,16 +10,30 @@ import java.util.*;
 
 public class Sala {
 
+	/**
+	 * Contador necesario para asignar los identificadores a las salas
+	 */
 	private static int contador = 0;
+	
+	/**
+	 * Identificador de la sala
+	 */
 	private int identificador;
+	
+	/**
+	 * Numero de butacas de la sala
+	 */
 	private int butacas;
+	
+	/**
+	 * Lista de sesiones a proyectar en la sala
+	 */
 	private List<Sesion> sesiones;
 	
 	/**
 	 * Constructor de la clase Sala.
 	 * @param butacas
 	 */
-
 	public Sala(int butacas) {
 		this.butacas = butacas;
 		contador++;
@@ -31,7 +45,6 @@ public class Sala {
 	 * Metodo getter de identificador
 	 * @return Identificador de la sala
 	 */
-
 	public int getIdentificador() {
 		return identificador;
 	}
@@ -40,7 +53,6 @@ public class Sala {
 	 * Metodo getter de contador
 	 * @return Contador de la sala
 	 */
-
 	public static int getContador() {
 		return contador;
 	}
@@ -49,7 +61,6 @@ public class Sala {
 	 * Metodo getter de butacas
 	 * @return Numero de butacas de la sala
 	 */
-
 	public int getButacas() {
 		return butacas;
 	}
@@ -58,7 +69,6 @@ public class Sala {
 	 * Metodo getter de sesiones
 	 * @return Sesiones de la sala
 	 */
-
 	public List<Sesion> getSesiones() {
 		return sesiones;
 	}
@@ -67,7 +77,6 @@ public class Sala {
 	 * Metodo setter de butacas
 	 * @param butacas
 	 */
-
 	public void setButacas(int butacas) {
 		this.butacas = butacas;
 	}
@@ -77,7 +86,6 @@ public class Sala {
 	 * @param sesion
 	 * @return true si la sesion se ha añadido correctamente y false si no
 	 */
-
 	public Boolean anadirSesion(Sesion sesion) {
 		for (Sesion sesionAux : sesiones) {
 			if (sesionAux.finalSesion().after(sesion.getFecha()) || sesionAux.equals(sesion)) {
