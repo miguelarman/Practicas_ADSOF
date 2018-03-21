@@ -13,8 +13,8 @@ import java.util.Calendar;
 public class EntradaDiaEspectador extends Entrada {
 	private static Float descuento = (float) 0.3;
 	
-	public EntradaDiaEspectador(Sesion sesion, Float precio) {
-		super(sesion, precio);
+	public EntradaDiaEspectador(Sesion sesion) {
+		super(sesion);
 	}
 	public Float getPrecio() {
 		return super.getPrecio() * (1 - descuento);
