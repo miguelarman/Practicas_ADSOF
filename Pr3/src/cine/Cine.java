@@ -6,16 +6,40 @@ package cine;
 import java.util.*;
 
 /**
- * @author eps
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
  *
  */
 public class Cine {
+	/**
+	 * Nombre del cine
+	 */
 	private String nombre;
+	
+	/**
+	 * Direccion del cine
+	 */
 	private String direccion;
+	
+	/**
+	 * Cartelera del cine
+	 */
 	private List<Pelicula> listaPeliculas;
+	
+	/**
+	 * Lista de salas del cine
+	 */
 	private List<Sala> listaSalas;
+	
+	/**
+	 * Lista de entradas del cine
+	 */
 	private List<Entrada> listaEntradas;
-
+	
+	/**
+	 * 
+	 * @param nombre del cine
+	 * @param direccion del cine
+	 */
 	public Cine(String nombre, String direccion) {
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -25,44 +49,57 @@ public class Cine {
 	}
 
 	/**
-	 * @return the nombre
+	 * Metodo getter de nombre
+	 * @return nombre del cine
 	 */
 	public String getNombre() {
 		return nombre;
 	}
 
 	/**
-	 * @return the direccion
+	 * Metodo getter de direccion
+	 * @return direccion del cine
 	 */
 	public String getDireccion() {
 		return direccion;
 	}
 
 	/**
-	 * @return the listaPeliculas
+	 * Metodo getter de lista de peliculas
+	 * @return cartelera
 	 */
 	public List<Pelicula> getListaPeliculas() {
 		return listaPeliculas;
 	}
 
 	/**
-	 * @return the listaEntradas
+	 * Metodo getter de lista de entradas
+	 * @return lista de entradas
 	 */
 	public List<Entrada> getListaEntradas() {
 		return listaEntradas;
 	}
+	
+	/**
+	 * Metodo getter de lista de salas
+	 * @return lista de salas
+	 */
+	public List<Sala> getListaSalas() {
+		return listaSalas;
+	}
 
 	/**
-	 * @param nombre
-	 *            the nombre to set
+	 * Metodo setter de nombre
+	 * @param nombre del cine
+	 *  
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
 	/**
-	 * @param direccion
-	 *            the direccion to set
+	 * Metodo setter de direccion
+	 * @param nombre del cine	 *  
 	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
@@ -74,16 +111,26 @@ public class Cine {
 	}
 
 	public Boolean anadirSala(Sala sala) {
+		if(sala.getIdentificador() == 0 || sala == null) {
+			return false;
+		}
 		this.listaSalas.add(sala);
 		return true;
 	}
 
 	public Boolean anadirEntrada(Entrada e) {
+		if(e.getIdentificador() == 0 || e == null) {
+			return false;
+		}
 		this.listaEntradas.add(e);
 		return true;
 	}
 
 	public Boolean anadirSesionASala(Sesion sesion, int sala) {
+		
+		if (sesion == null || sala <= 0 || sala > Sala.getContador()) {
+			return false;
+		}
 		for (Sala s : listaSalas) {
 			if (s.getIdentificador() == sala) {
 				for (Sala sal : listaSalas) {
@@ -132,7 +179,7 @@ public class Cine {
 					} else {
 						entrada = new Entrada(s);
 					}
-
+					if(entrada.getIdentificador() == 0)
 					this.anadirEntrada(entrada);
 
 					return entrada;
