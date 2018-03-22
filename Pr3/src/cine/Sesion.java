@@ -66,7 +66,7 @@ public class Sesion {
 			case 12: this.fecha.set(Calendar.MONTH, Calendar.DECEMBER);
 					break;
 			default: System.out.println("Mes introducido incorrecto");
-					break;			
+					return;			
 		}
 		
 		this.fecha.set(Calendar.DAY_OF_MONTH, dia);
