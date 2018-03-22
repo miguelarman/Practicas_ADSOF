@@ -2,13 +2,41 @@ package cine;
 
 import java.util.Calendar;
 
-public class Sesion {
 
+/**
+ * Clase Sesion. Almacena los datos identificativos de una sesion (fehca, pelicula), así como un contador de las butacas disponibles.
+ * Hace llamadas a metodos de las clases Pelicula y Sala, puesto que tiene atributos de dichas clases
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ *
+ */
+public class Sesion {
+	/**
+	 * Fecha y hora de la sesion
+	 */
 	private Calendar fecha;
+	/**
+	 * Pelicula proyectada en la sesion
+	 */
 	private Pelicula pelicula;
+	/**
+	 * Cantidad de butacas disponibles para la sesion en cuestion
+	 */
 	private Integer butacasDisponibles;
+	/**
+	 * Sala asociada a la sesion
+	 */
 	private Sala sala;
 
+	/**
+	 * Constructor de la clase Sesion
+	 * @param anyo Anno de inicio de la proyeccion
+	 * @param mes Mes de inicio de la proyeccion
+	 * @param dia Dia de inicio de la proyeccion
+	 * @param hora Hora de inicio de la proyeccion
+	 * @param minuto Minuto de inicio de la proyeccion
+	 * @param pelicula Pelicula a proyectar
+	 * @param sala Sala en la que se desarrolla la sesion
+	 */
 	public Sesion(Integer anyo, Integer mes, Integer dia, Integer hora, Integer minuto, Pelicula pelicula, Sala sala) {
 		this.fecha = Calendar.getInstance();
 		this.fecha.set(Calendar.YEAR, anyo);
@@ -51,39 +79,85 @@ public class Sesion {
 			System.out.println("No es posible crear una sesion en la sala indicada en el tiempo indicado.\n");
 		};
 	}
-
+	
+	
+	// Getters
+	
+	/**
+	 * Metodo getter de la fecha
+	 * @return Fecha de la sesion
+	 */
 	public Calendar getFecha() {
 		return fecha;
 	}
-
+	
+	/**
+	 * Metodo getter de la pelicula
+	 * @return Pelicula de la sesion
+	 */
 	public Pelicula getPelicula() {
 		return pelicula;
 	}
-
+	
+	/**
+	 * Metodo getter de las butacas disponibles
+	 * @return Butacas disponibles para la sesion
+	 */
 	public int getButacasDisponibles() {
 		return butacasDisponibles;
 	}
-
+	
+	/**
+	 * Metodo getter de la sala
+	 * @return Sala de la sesion
+	 */
 	public Sala getSala() {
 		return sala;
 	}
-
+	
+	
+	// Setters
+	
+	/**
+	 * Metodo setter de la fecha
+	 * @param fecha Nueva fecha de la sesion
+	 */
 	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
-
+	
+	/**
+	 * Metodo setter de la pelicula
+	 * @param pelicula Nueva Pelicula de la sesion
+	 */
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
 	}
-
+	
+	/**
+	 * Metodo setter de las butacas disponibles
+	 * @param butacasDisponibles Nueva cantidad de butacas disponibles de la sesion
+	 */
 	public void setButacasDisponibles(int butacasDisponibles) {
 		this.butacasDisponibles = butacasDisponibles;
 	}
-
+	
+	/**
+	 * Metodo setter de la sala
+	 * @param sala Nueva sala de la sesion
+	 */
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-
+	
+	
+	
+	/**
+	 * Metodo que calcula el momento de finalizacion de la sesion
+	 * Utilizado para que no pueda haber en una misma sala dos sesiones solapandose, es decir,
+	 * que una empiece antes de que termine la otra
+	 * @return Fecha y hora de finalizacion de la sesion
+	 */
 	public Calendar finalSesion() {
 		Calendar fechaAux = (Calendar) fecha.clone();
 
@@ -92,6 +166,13 @@ public class Sesion {
 		return fechaAux;
 	}
 	
+	/**
+	 * Metodo que actualiza el numero de butacas disponibles para la sala.
+	 * Se comprueba si se puede vender una entrada, o si ya estan agotadas
+	 * @return Valor booleano <ul>
+	 * <li>True si se ha podido decrementar el numero de butacas disponibles</li>
+	 * <li>False en cualquier otro caso</li></ul>
+	 */
 	public Boolean actualizarButacasVendidas() {
 
 		if (butacasDisponibles < 1) {
@@ -102,6 +183,12 @@ public class Sesion {
 		}
 	}
 	
+	
+	@Override
+	/**
+	 * Metodo toString de la clase Sesion. Necesario para imprimir por pantalla los datos de una sesion en formato legible
+	 * @return Cadena imprimible con los datos de la sesion
+	 */
 	public String toString() {
 		int mes = 0;
 		switch(fecha.get(Calendar.MONTH)) {
