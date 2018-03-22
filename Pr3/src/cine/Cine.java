@@ -141,7 +141,6 @@ public class Cine {
 			}
 		}
 		return null;
-
 	}
 
 	public Float informacionRecaudacion() {

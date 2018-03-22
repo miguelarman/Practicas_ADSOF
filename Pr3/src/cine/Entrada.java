@@ -110,7 +110,7 @@ public class Entrada {
 	public String toString() {
 		String cadena = "";
 		
-		cadena += "Entrada (" + this.identificador + ") para la sesion:\n" + this.sesion + "Precio: " + Entrada.precio;
+		cadena += "Entrada (id: " + this.identificador + ") para la sesion:\n" + this.sesion + "Precio: " + Entrada.precio;
 		
 		return cadena;
 	}

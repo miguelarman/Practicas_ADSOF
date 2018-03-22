@@ -82,7 +82,7 @@ public class EntradaDiaEspectador extends Entrada {
 	public String toString() {
 		String cadena = "";
 		
-		cadena += "Entrada (" + this.getIdentificador() + ") para la sesion:\n" + this.getSesion() + "Precio: " + this.getPrecio() + "\n";
+		cadena += "Entrada (id: " + this.getIdentificador() + ") para la sesion:\n" + this.getSesion() + "Precio: " + this.getPrecio() + "\n";
 		
 		return cadena;
 	}
