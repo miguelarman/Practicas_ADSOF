@@ -105,7 +105,10 @@ public class Cine {
 	/**
 	 * Anade una pelicula a la lista de peliculas del cine
 	 * @param pelicula
-	 * @return true si se ha realizado correctamente y false si ha fallado
+	 * @return Valor booleano que representa <ul>
+	 * <li>True si se ha realizado correctamente</li>
+	 * <li>False en cualquier otro caso</li>
+	 * </ul>
 	 */
 	public Boolean anadirPelicula(Pelicula peli) {
 		if(peli == null) {
@@ -118,7 +121,10 @@ public class Cine {
 	/**
 	 * Anade una sala a la lista de salas del cine
 	 * @param sala
-	 * @return true si se ha realizado correctamente y false si ha fallado
+	 * @return Valor booleano que representa <ul>
+	 * <li>True si se ha realizado correctamente</li>
+	 * <li>False en cualquier otro caso</li>
+	 * </ul>
 	 */
 	public Boolean anadirSala(Sala sala) {
 		if(sala.getIdentificador() == 0 || sala == null) {
@@ -131,7 +137,10 @@ public class Cine {
 	/**
 	 * Anade una entrada a la lista de entradas del cine
 	 * @param entrada
-	 * @return true si se ha realizado correctamente y false si ha fallado
+	 * @return Valor booleano que representa <ul>
+	 * <li>True si se ha realizado correctamente</li>
+	 * <li>False en cualquier otro caso</li>
+	 * </ul>
 	 */
 	public Boolean anadirEntrada(Entrada e) {
 		if(e.getIdentificador() == 0 || e == null) {
@@ -146,7 +155,10 @@ public class Cine {
 	 * introduce la sesion en la lista de sesiones de la nueva sala y la remueve de la antigua
 	 * @param sesion
 	 * @param sala
-	 * @return true si se ha realizado correctamente y false si ha fallado
+	 * @return Valor booleano que representa <ul>
+	 * <li>True si se ha realizado correctamente</li>
+	 * <li>False en cualquier otro caso</li>
+	 * </ul>
 	 */
 	public Boolean anadirSesionASala(Sesion sesion, int sala) {
 		
@@ -155,16 +167,16 @@ public class Cine {
 		if (sesion == null || sala <= 0 || sala > Sala.getContador()) {
 			return false;
 		}
-		for (Sala s : listaSalas) {
+		for (Sala s : listaSalas) { // Recorre la lista de salas para encontrar la que tenga el id
 			if (s.getIdentificador() == sala) {
-				for (Sala sal : listaSalas) {
+				for (Sala sal : listaSalas) { // Recorre la lista de salas para comprobar si la sesion ya ha sido anadida
 					for (Sesion ses : sal.getSesiones()) {
 						if (ses == sesion) {
-							check = s.anadirSesion(sesion);
+							check = s.anadirSesion(sesion); // Anade la sesion a la lista de sesiones de la nueva sala
 							if(check == false) {
 								return false;
 							}
-							check = ses.getSala().getSesiones().remove(sesion);
+							check = ses.getSala().getSesiones().remove(sesion); // Quita la sesion de la anterior sala
 							if(check == false) {
 								return false;
 							}
@@ -183,7 +195,10 @@ public class Cine {
 	 * Si la sesion y la sala estan almacenadas en nuestro cine, cambia la pelicula de la sesion a la del parametro de entrada
 	 * @param nombre de la pelicula
 	 * @param sesion
-	 * @return true si se ha realizado correctamente y false si ha fallado
+	 * @return Valor booleano que representa <ul>
+	 * <li>True si se ha realizado correctamente</li>
+	 * <li>False en cualquier otro caso</li>
+	 * </ul>
 	 */
 	public Boolean anadirPeliculaASesion(String peli, Sesion s) {
 		
@@ -191,9 +206,9 @@ public class Cine {
 			return false;
 		}
 
-		for (Pelicula p : listaPeliculas) {
+		for (Pelicula p : listaPeliculas) {// Recorre la lista de peliculas para encontrar la que tiene el titulo indicado
 			if (p.getTitulo() == peli) {
-				for (Sala sala : listaSalas) {
+				for (Sala sala : listaSalas) { // Encuentra la sesion pasada como argumento
 					for (Sesion ses : sala.getSesiones()) {
 						if (ses == s) {
 							s.setPelicula(p);
@@ -211,7 +226,10 @@ public class Cine {
 	/**
 	 * Anade una entrada a la lista de entradas, actualizando las butacas vendidas
 	 * @param sesion
-	 * @return null si ha fallado y la entrada vendida si se ha realizado correctamente
+	 * @return Objeto de la clase entrada que representa <ul>
+	 * <li>null si ha habido algun problema</li>
+	 * <li>La nueva entrada en cualquier otro caso</li>
+	 * </ul>
 	 */
 	public Entrada venderEntrada(Sesion s) {
 
@@ -225,15 +243,18 @@ public class Cine {
 		fecha = s.getFecha();
 
 		for (Sala sala : listaSalas) {
-			for (Sesion ses : sala.getSesiones()) {
+			for (Sesion ses : sala.getSesiones()) { // Busca la sesion deseada
 				if (s == ses) {
 					if (EntradaDiaEspectador.isFechaEspectador(fecha)) {
 						entrada = new EntradaDiaEspectador(s);
 					} else {
 						entrada = new Entrada(s);
 					}
-					if(entrada.getIdentificador() == 0)
-					this.anadirEntrada(entrada);
+					
+					Boolean check = this.anadirEntrada(entrada);
+					if (!check) { // Comprueba que se ha podido anadir la entrada (habia butacas suficientes)
+						return null;
+					}
 
 					return entrada;
 
@@ -300,7 +321,7 @@ public class Cine {
 	 * @param titulo Titulo de la pelicula que se desea eliminar
 	 * @return Valor entero que representa <ul>
 	 * <li>Numero de sesiones que tenian la pelicula eliminada</li>
-	 * <li> -1 si no se ha podido eliminar</li>
+	 * <li>-1 si no se ha podido eliminar</li>
 	 * </ul>
 	 */
 	public int removePeliculaCartelera(String titulo) {
@@ -308,20 +329,20 @@ public class Cine {
 		int numSesiones = 0;
 		Boolean check;
 
-		for (Pelicula p : listaPeliculas) {
+		for (Pelicula p : listaPeliculas) { // Busca la pelicula con el titulo 
 			if (titulo == p.getTitulo()) {
 				for (Sala s : listaSalas) {
-					for (Sesion ses : s.getSesiones()) {
+					for (Sesion ses : s.getSesiones()) { // Busca las sesiones con esa pelicula
 						if (ses.getPelicula() == p) {
 							numSesiones++;
-							check = s.getSesiones().remove(ses);
-							if (check == false) {
+							check = s.getSesiones().remove(ses); // Se eliminan las sesiones con esa pelicula
+							if (!check) {
 								return -1;
 							}
 						}
 					}
 				}
-				check = listaPeliculas.remove(p);
+				check = listaPeliculas.remove(p); // Se elimina la pelicula
 				if (check == false) {
 					return -1;
 				}
@@ -337,7 +358,7 @@ public class Cine {
 	 * @param id Identificador de la sala que se desea eliminar
 	 * @return Valor entero que representa <ul>
 	 * <li>Numero de sesiones que tenia la sala eliminada</li>
-	 * <li> -1 si no se ha podido eliminar</li>
+	 * <li>-1 si no se ha podido eliminar</li>
 	 * </ul>
 	 */
 	public int removeSala(int id) {
@@ -350,13 +371,7 @@ public class Cine {
 
 		for (Sala s : listaSalas) {
 			if (s.getIdentificador() == id) {
-				for (Sesion ses : s.getSesiones()) {
-					check = s.getSesiones().remove(ses);
-					if (check == false) {
-						return -1;
-					}
-					numSesiones++;
-				}
+				numSesiones = s.getSesiones().size();
 				check = listaSalas.remove(s);
 				if (check == false) {
 					return -1;
@@ -383,7 +398,7 @@ public class Cine {
 		}
 
 		for (Entrada entr : listaEntradas) {
-			if (id == entr.getIdentificador()) {
+			if (id == entr.getIdentificador()) { // Busca la entrada a borrar
 				ses = entr.getSesion();
 				check = listaEntradas.remove(entr);
 				if (check == false) {

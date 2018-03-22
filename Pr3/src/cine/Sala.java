@@ -41,6 +41,8 @@ public class Sala {
 		this.sesiones = new ArrayList<Sesion>();
 	}
 	
+	// Getters
+	
 	/**
 	 * Metodo getter de identificador
 	 * @return Identificador de la sala
@@ -73,6 +75,8 @@ public class Sala {
 		return sesiones;
 	}
 	
+	// Setters
+	
 	/**
 	 * Metodo setter de butacas
 	 * @param butacas
@@ -81,10 +85,16 @@ public class Sala {
 		this.butacas = butacas;
 	}
 	
+	
+	
+	
 	/**
 	 * Anade una sesion dada a la lista de sesiones de la sala. Ademas comprueba que no se solapen en el tiempo.
 	 * @param sesion
-	 * @return true si la sesion se ha añadido correctamente y false si no
+	 * @return Valor booleano que representa <ul>
+	 * <li>True si se ha realizado correctamente</li>
+	 * <li>False en cualquier otro caso</li>
+	 * </ul>
 	 */
 	public Boolean anadirSesion(Sesion sesion) {
 		
@@ -92,7 +102,7 @@ public class Sala {
 			return false;
 		}
 		
-		for (Sesion sesionAux : sesiones) {
+		for (Sesion sesionAux : sesiones) { // Comprueba que no se solapa a otra sesion
 			if (sesionAux.finalSesion().after(sesion.getFecha()) || sesionAux.equals(sesion)) {
 				return false;
 			}
@@ -120,7 +130,7 @@ public class Sala {
 	 */
 	public boolean removeSesion (Sesion sesion) {
 		
-		for (Sesion se : this.sesiones) {
+		for (Sesion se : this.sesiones) { // Busca la sesion a eliminar
 			if (sesion == se) {
 				this.sesiones.remove(se);
 				
