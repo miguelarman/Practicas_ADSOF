@@ -107,8 +107,7 @@ public class Cine {
 	/**
 	 * Metodo setter de direccion
 	 * 
-	 * @param nombre
-	 *            del cine *
+	 * @param direccion Nueva direccion
 	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
@@ -117,7 +116,7 @@ public class Cine {
 	/**
 	 * Anade una pelicula a la lista de peliculas del cine
 	 * 
-	 * @param pelicula
+	 * @param peli Pelicula a anadir
 	 * @return Valor booleano que representa
 	 *         <ul>
 	 *         <li>True si se ha realizado correctamente</li>
@@ -135,7 +134,7 @@ public class Cine {
 	/**
 	 * Anade una sala a la lista de salas del cine
 	 * 
-	 * @param sala
+	 * @param sala Sala a anadir
 	 * @return Valor booleano que representa
 	 *         <ul>
 	 *         <li>True si se ha realizado correctamente</li>
@@ -155,8 +154,8 @@ public class Cine {
 	 * la sesion a la indicada, introduce la sesion en la lista de sesiones de la
 	 * nueva sala y la remueve de la antigua
 	 * 
-	 * @param sesion
-	 * @param sala
+	 * @param sesion Sesion a modificar
+	 * @param sala Identificador de la sala a cambiar
 	 * @return Valor booleano que representa
 	 *         <ul>
 	 *         <li>True si se ha realizado correctamente</li>
@@ -199,9 +198,8 @@ public class Cine {
 	 * Si la sesion y la sala estan almacenadas en nuestro cine, cambia la pelicula
 	 * de la sesion a la del parametro de entrada
 	 * 
-	 * @param nombre
-	 *            de la pelicula
-	 * @param sesion
+	 * @param peli Nombre de la pelicula
+	 * @param s Sesion a modificar
 	 * @return Valor booleano que representa
 	 *         <ul>
 	 *         <li>True si se ha realizado correctamente</li>
@@ -235,7 +233,7 @@ public class Cine {
 	/**
 	 * Anade una entrada a la lista de entradas, actualizando las butacas vendidas
 	 * 
-	 * @param sesion
+	 * @param s Sesion de la que se quiere una entrada
 	 * @return Objeto de la clase entrada que representa
 	 *         <ul>
 	 *         <li>null si ha habido algun problema</li>
@@ -338,8 +336,7 @@ public class Cine {
 	/**
 	 * Metodo que eliminar una pelicula de la lista de peliculas del cine
 	 * 
-	 * @param titulo
-	 *            Titulo de la pelicula que se desea eliminar
+	 * @param titulo Titulo de la pelicula que se desea eliminar
 	 * @return Valor entero que representa
 	 *         <ul>
 	 *         <li>Numero de sesiones que tenian la pelicula eliminada</li>
@@ -377,8 +374,7 @@ public class Cine {
 	/**
 	 * Metodo que elimina una sala del cine
 	 * 
-	 * @param id
-	 *            Identificador de la sala que se desea eliminar
+	 * @param id Identificador de la sala que se desea eliminar
 	 * @return Valor entero que representa
 	 *         <ul>
 	 *         <li>Numero de sesiones que tenia la sala eliminada</li>
@@ -410,8 +406,7 @@ public class Cine {
 	/**
 	 * Metodo que elimina una entrada de la lista de entradas del cine
 	 * 
-	 * @param id
-	 *            Identificador de la entrada que se desea eliminar
+	 * @param id Identificador de la entrada que se desea eliminar
 	 * @return Sesion de la entrada que has eliminado
 	 */
 	public Sesion removeEntrada(int id) {

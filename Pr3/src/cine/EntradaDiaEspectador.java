@@ -24,7 +24,7 @@ public class EntradaDiaEspectador extends Entrada {
 	/**
 	 * Metodo constructor de la clase EntradaDiaEspectador
 	 * 
-	 * @param sesion
+	 * @param sesion Sesion de la que se quiere entrada
 	 */
 	public EntradaDiaEspectador(Sesion sesion) {
 		super(sesion);

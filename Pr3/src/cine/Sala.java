@@ -37,7 +37,7 @@ public class Sala {
 	/**
 	 * Constructor de la clase Sala.
 	 * 
-	 * @param butacas
+	 * @param butacas Numero de butacas de la sala
 	 */
 	public Sala(int butacas) {
 		this.butacas = butacas;
@@ -89,7 +89,7 @@ public class Sala {
 	/**
 	 * Metodo setter de butacas
 	 * 
-	 * @param butacas
+	 * @param butacas Numero de butacas
 	 */
 	public void setButacas(int butacas) {
 		this.butacas = butacas;
@@ -99,7 +99,7 @@ public class Sala {
 	 * Anade una sesion dada a la lista de sesiones de la sala. Ademas comprueba que
 	 * no se solapen en el tiempo.
 	 * 
-	 * @param sesion
+	 * @param sesion Sesion a anadir
 	 * @return Valor booleano que representa
 	 *         <ul>
 	 *         <li>True si se ha realizado correctamente</li>
