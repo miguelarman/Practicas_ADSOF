@@ -20,10 +20,22 @@ public class TesterSala {
 				120);
 
 		// Creamos sesiones en estas salas
-		Sesion sesion1 = new Sesion(2018, 12, 12, 18, 30, p, s1);
-		new Sesion(2018, 12, 12, 19, 00, p, s1);
-		new Sesion(2018, 11, 12, 19, 00, p, s2);
-		Sesion sesion2 = new Sesion(2018, 12, 12, 22, 00, p, s1);
+		Sesion ses1 = new Sesion(2018, 12, 12, 18, 30, p, s1);
+		if (ses1.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion 1 correctamente\n");
+		}
+		Sesion ses2 = new Sesion(2018, 12, 12, 19, 00, p, s1);
+		if (ses2.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion 2 correctamente\n");
+		}
+		Sesion ses3 = new Sesion(2018, 11, 12, 20, 45, p, s2);
+		if (ses3.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion 3 correctamente\n");
+		}
+		Sesion ses4 = new Sesion(2018, 12, 12, 22, 16, p, s2);
+		if (ses4.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion 4 correctamente\n");
+		}
 
 		/*
 		 * Volvemos a imprimir la informacion de las salas para comprobar que se
@@ -33,21 +45,19 @@ public class TesterSala {
 		System.out.println(s2);
 
 		// Borramos una sesion de la sala
-		check = s1.removeSesion(sesion1);
+		check = s1.removeSesion(ses1);
 		if (!check) {
-			System.out.println("No se ha podido eliminar la sesion correctamente");
+			System.out.println("No se ha podido eliminar la sesion correctamente\n");
 		}
 
 		// Imprimimos las salas para comprobar que se eliminan las sesiones
 		System.out.println(s1);
 		System.out.println(s2);
 
-		
-		
 		// Intentamos borrar una sesion que no esta en la sala
-		check = s2.removeSesion(sesion2);
+		check = s2.removeSesion(ses4);
 		if (!check) {
-			System.out.println("No se ha podido eliminar la sesion correctamente");
+			System.out.println("No se ha podido eliminar la sesion correctamente\n");
 		}
 
 		// Imprimimos las salas para comprobar que no se ha eliminado nada
