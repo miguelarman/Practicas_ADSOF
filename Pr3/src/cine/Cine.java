@@ -293,7 +293,16 @@ public class Cine {
 		return cadena;
 
 	}
-
+	
+	
+	/**
+	 * Metodo que eliminar una pelicula de la lista de peliculas del cine
+	 * @param titulo Titulo de la pelicula que se desea eliminar
+	 * @return Valor entero que representa <ul>
+	 * <li>Numero de sesiones que tenian la pelicula eliminada</li>
+	 * <li> -1 si no se ha podido eliminar</li>
+	 * </ul>
+	 */
 	public int removePeliculaCartelera(String titulo) {
 
 		int numSesiones = 0;
@@ -321,7 +330,16 @@ public class Cine {
 		}
 		return -1;
 	}
-
+	
+	
+	/**
+	 * Metodo que elimina una sala del cine
+	 * @param id Identificador de la sala que se desea eliminar
+	 * @return Valor entero que representa <ul>
+	 * <li>Numero de sesiones que tenia la sala eliminada</li>
+	 * <li> -1 si no se ha podido eliminar</li>
+	 * </ul>
+	 */
 	public int removeSala(int id) {
 		int numSesiones = 0;
 		Boolean check;
@@ -349,7 +367,13 @@ public class Cine {
 
 		return -1;
 	}
-
+	
+	
+	/**
+	 * Metodo que elimina una entrada de la lista de entradas del cine
+	 * @param id Identificador de la entrada que se desea eliminar
+	 * @return Sesion de la entrada que has eliminado
+	 */
 	public Sesion removeEntrada(int id) {
 		Sesion ses;
 		Boolean check;
