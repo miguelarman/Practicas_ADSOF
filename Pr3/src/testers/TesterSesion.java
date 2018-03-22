@@ -17,19 +17,19 @@ public class TesterSesion {
 		 */
 		Sesion s1 = new Sesion(2018, 12, 12, 18, 30, p, s);
 		if (s1.getSala() == null) {
-			System.out.println("No se ha podido crear la sesion correctamente");
+			System.out.println("No se ha podido crear la sesion correctamente1");
 		}
 		Sesion s2 = new Sesion(2018, 12, 12, 19, 00, p, s);
 		if (s2.getSala() == null) {
-			System.out.println("No se ha podido crear la sesion correctamente");
+			System.out.println("No se ha podido crear la sesion correctamente2");
 		}
 		Sesion s3 = new Sesion(2018, 11, 12, 20, 45, p, s);
 		if (s3.getSala() == null) {
-			System.out.println("No se ha podido crear la sesion correctamente");
+			System.out.println("No se ha podido crear la sesion correctamente3");
 		}
 		Sesion s4 = new Sesion(2018, 12, 12, 22, 16, p, s);
 		if (s4.getSala() == null) {
-			System.out.println("No se ha podido crear la sesion correctamente");
+			System.out.println("No se ha podido crear la sesion correctamente4");
 		}
 		
 		
