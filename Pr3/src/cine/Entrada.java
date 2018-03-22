@@ -33,12 +33,14 @@ public class Entrada {
 		if (sesion.getButacasDisponibles() == 0) {
 			return;
 		} else {
+			
+			if (!sesion.actualizarButacasVendidas()) {
+				return;
+			}
+			
 			contador++;
 			setIdentificador(contador);
 			this.sesion = sesion;
-			
-			this.sesion.actualizarButacasVendidas();
-
 		}
 	}
 	
@@ -108,7 +110,7 @@ public class Entrada {
 	public String toString() {
 		String cadena = "";
 		
-		cadena += "Entrada (" + this.identificador + ") para la sesion:\n" + this.sesion + "Precio: " + Entrada.precio;
+		cadena += "Entrada (id: " + this.identificador + ") para la sesion:\n" + this.sesion + "Precio: " + Entrada.precio;
 		
 		return cadena;
 	}
