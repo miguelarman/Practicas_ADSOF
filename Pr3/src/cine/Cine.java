@@ -244,8 +244,8 @@ public class Cine {
 	}
 	
 	/**
-	 * Añade una entrada a la lista de entradas, actualizando las butacas vendidas
-	 * @return la suma del dinero de las entradas vendidas
+	 * Calcula la suma del precio de las entradas vendidas
+	 * @return el total recaudado
 	 */
 
 	public Float informacionRecaudacion() {
@@ -259,6 +259,10 @@ public class Cine {
 		return total;
 	}
 
+	/**
+	 * Forma una cadena con la informacion de todas las peliculas en la cartelera
+	 * @return la informacion de la cartelera
+	 */
 	public String informacionCartelera() {
 
 		String cadena = "";
@@ -268,7 +272,11 @@ public class Cine {
 		}
 		return cadena;
 	}
-
+	
+	/**
+	 * Forma una cadena con la informacion de todas las sesiones del cine
+	 * @return la informacion de las sesiones
+	 */
 	public String informacionSesiones() {
 
 		List<Sesion> sesiones = new ArrayList<Sesion>();
