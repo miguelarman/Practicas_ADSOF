@@ -135,11 +135,12 @@ public class Sala {
 	
 	// toString
 	
+	
+	@Override
 	/**
 	 * Metodo toString, necesario para imprimir por pantalla y para llamar a toString de otras clases 
 	 * @return la cadena con la informacion sobre la sala
 	 */
-	@Override
 	public String toString() {
 		String cadena = "Sala " + identificador + ":\n" + "Número de butacas: " + butacas + "\n" + "Sesiones:\n";
 		int i = 1;

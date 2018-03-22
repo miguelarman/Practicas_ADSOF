@@ -305,6 +305,10 @@ public class Cine {
 	}
 
 	@Override
+	/**
+	 * Metodo toString, necesario para imprimir por pantalla la informacion del cine de forma legible
+	 * @return la cadena con la informacion sobre el cine
+	 */
 	public String toString() {
 
 		String cadena = "" + nombre + ". Dirección: " + direccion + "\n\n";
