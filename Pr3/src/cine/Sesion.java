@@ -76,7 +76,7 @@ public class Sesion {
 		this.butacasDisponibles = sala.getButacas();
 		this.sala = sala;
 		if(sala.anadirSesion(this) == false) {
-			System.out.println("No es posible crear una sesion en la sala indicada en el tiempo indicado.\n");
+			this.sala = null;
 		};
 	}
 	

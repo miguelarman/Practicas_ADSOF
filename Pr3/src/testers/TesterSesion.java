@@ -10,9 +10,21 @@ public class TesterSesion {
 		Pelicula p = new Pelicula("La forma del Agua", "Alex de la Iglesia", 2018, "Increible pelicula", Genero.DRAMA, 120);
 		
 		Sesion s1 = new Sesion(2018, 12, 12, 18, 30, p, s);
+		if (s1.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion correctamente");
+		}
 		Sesion s2 = new Sesion(2018, 12, 12, 19, 00, p, s);
+		if (s2.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion correctamente");
+		}
 		Sesion s3 = new Sesion(2018, 11, 12, 20, 45, p, s);
+		if (s3.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion correctamente");
+		}
 		Sesion s4 = new Sesion(2018, 12, 12, 22, 16, p, s);
+		if (s4.getSala() == null) {
+			System.out.println("No se ha podido crear la sesion correctamente");
+		}
 		
 		System.out.println(s1);
 		System.out.println(s2);
