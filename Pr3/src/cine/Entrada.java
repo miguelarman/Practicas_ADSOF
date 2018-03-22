@@ -106,9 +106,11 @@ public class Entrada {
 	 * @return Cadena imprimible con los datos de la entrada
 	 */
 	public String toString() {
-		// TODO
+		String cadena = "";
 		
-		return "que no se nos olvide modificar esto";
+		cadena += "Entrada (" + this.identificador + ") para la sesion:\n" + this.sesion + "Precio: " + Entrada.precio;
+		
+		return cadena;
 	}
 
 }
