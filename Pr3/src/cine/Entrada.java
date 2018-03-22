@@ -1,5 +1,7 @@
 package cine;
 
+
+
 public class Entrada {
 	private static int contador = 0;
 	private int identificador;
