@@ -107,6 +107,34 @@ public class Sala {
 		return true;
 	}
 	
+	
+	
+	
+	/**
+	 * Metodo que elimina una sesion de la sala
+	 * @param sesion Sesion que se desea eliminar
+	 * @return Valor booleano: <ul>
+	 * <li>True si se ha podido eliminar la sesion</li>
+	 * <li>False si no se ha podido eliminar la sesion</li>
+	 * </ul>
+	 */
+	public boolean removeSesion (Sesion sesion) {
+		
+		for (Sesion se : this.sesiones) {
+			if (sesion == se) {
+				this.sesiones.remove(se);
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
+	// toString
+	
 	/**
 	 * Metodo toString, necesario para imprimir por pantalla y para llamar a toString de otras clases 
 	 * @return la cadena con la informacion sobre la sala

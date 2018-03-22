@@ -53,19 +53,33 @@ public class TesterCine {
 		
 		
 		Entrada e = new Entrada(s1);
-		c.anadirEntrada(e);
+		Boolean comprobacion = c.anadirEntrada(e);
+		if (!comprobacion) {
+			System.out.println("No se ha podido añadir la entrada");
+		}
 		
 		System.out.println("Recaudación: " + c.informacionRecaudacion());
 		
 		EntradaDiaEspectador ee = new EntradaDiaEspectador(s1);
-		c.anadirEntrada(ee);
+		comprobacion = c.anadirEntrada(ee);
+		if (!comprobacion) {
+			System.out.println("No se ha podido añadir la entrada");
+		}
 		
 		System.out.println("Recaudación: " + c.informacionRecaudacion());
 		
-		c.venderEntrada(s1);
+		
+		Entrada entradaAux = c.venderEntrada(s1);
+		if (entradaAux == null) {
+			System.out.println("No se ha podido crear la entrada");
+		}
 		System.out.println("Recaudación: " + c.informacionRecaudacion());
 		
-		c.venderEntrada(s1);
+		
+		entradaAux = c.venderEntrada(s1);
+		if (entradaAux == null) {
+			System.out.println("No se ha podido crear la entrada");
+		}
 		System.out.println("Recaudación: " + c.informacionRecaudacion());
 		
 		System.out.println(c);
