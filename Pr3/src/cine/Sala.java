@@ -102,8 +102,25 @@ public class Sala {
 			return false;
 		}
 		
-		for (Sesion sesionAux : sesiones) { // Comprueba que no se solapa a otra sesion
-			if (sesionAux.finalSesion().after(sesion.getFecha())) {
+		for (Sesion sesionAux : sesiones) {
+			
+			Boolean valido = true;
+			
+			/*
+			 * Comprobamos que no se solapa con las peliculas existentes
+			 * - No empieza en mitad de una pelicula
+			 * - No termina en mitad de una pelicula
+			 * - No abarca una pelicula entera
+			 */
+			if (sesion.getFecha().after(sesionAux.getFecha()) && sesion.getFecha().before(sesionAux.finalSesion())) {
+				valido = false;
+			} else if (sesion.finalSesion().after(sesionAux.getFecha()) && sesion.finalSesion().before(sesionAux.finalSesion())) {
+				valido = false;
+			} else if (sesion.getFecha().before(sesionAux.getFecha()) && sesion.finalSesion().after(sesionAux.finalSesion())) {
+				valido = false;
+			}
+			
+			if (!valido) {
 				return false;
 			}
 			
