@@ -87,9 +87,18 @@ public class Sala {
 	 * @return true si la sesion se ha añadido correctamente y false si no
 	 */
 	public Boolean anadirSesion(Sesion sesion) {
+		
+		if (sesion == null) {
+			return false;
+		}
+		
 		for (Sesion sesionAux : sesiones) {
 			if (sesionAux.finalSesion().after(sesion.getFecha()) || sesionAux.equals(sesion)) {
 				return false;
+			}
+			
+			if (sesionAux == sesion) {
+				return true;
 			}
 		}
 

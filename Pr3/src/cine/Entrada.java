@@ -33,12 +33,14 @@ public class Entrada {
 		if (sesion.getButacasDisponibles() == 0) {
 			return;
 		} else {
+			
+			if (!sesion.actualizarButacasVendidas()) {
+				return;
+			}
+			
 			contador++;
 			setIdentificador(contador);
 			this.sesion = sesion;
-			
-			this.sesion.actualizarButacasVendidas();
-
 		}
 	}
 	
