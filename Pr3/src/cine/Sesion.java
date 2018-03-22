@@ -65,7 +65,7 @@ public class Sesion {
 					break;
 			case 12: this.fecha.set(Calendar.MONTH, Calendar.DECEMBER);
 					break;
-			default: System.out.println("Mes introducido incorrecto");
+			default: this.sala = null;
 					return;			
 		}
 		
@@ -191,6 +191,11 @@ public class Sesion {
 	 */
 	public String toString() {
 		int mes = 0;
+		
+		if (this.sala == null) {
+			return "Sesion no valida";
+		}
+		
 		switch(fecha.get(Calendar.MONTH)) {
 		case Calendar.JANUARY:
 			mes = 1;
