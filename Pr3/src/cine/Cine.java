@@ -102,11 +102,24 @@ public class Cine {
 		this.direccion = direccion;
 	}
 
+	/**
+	 * Anade una pelicula a la lista de peliculas del cine
+	 * @param pelicula
+	 * @return true si se ha realizado correctamente y false si ha fallado
+	 */
 	public Boolean anadirPelicula(Pelicula peli) {
+		if(peli == null) {
+			return false;
+		}
 		this.listaPeliculas.add(peli);
 		return true;
 	}
-
+	
+	/**
+	 * Anade una sala a la lista de salas del cine
+	 * @param sala
+	 * @return true si se ha realizado correctamente y false si ha fallado
+	 */
 	public Boolean anadirSala(Sala sala) {
 		if(sala.getIdentificador() == 0 || sala == null) {
 			return false;
@@ -114,7 +127,12 @@ public class Cine {
 		this.listaSalas.add(sala);
 		return true;
 	}
-
+	
+	/**
+	 * Anade una entrada a la lista de entradas del cine
+	 * @param entrada
+	 * @return true si se ha realizado correctamente y false si ha fallado
+	 */
 	public Boolean anadirEntrada(Entrada e) {
 		if(e.getIdentificador() == 0 || e == null) {
 			return false;
@@ -122,8 +140,17 @@ public class Cine {
 		this.listaEntradas.add(e);
 		return true;
 	}
-
+	
+	/**
+	 * Si la sesion y la sala estan almacenadas en nuestro cine, cambia la sala de la sesion a la indicada, 
+	 * introduce la sesion en la lista de sesiones de la nueva sala y la remueve de la antigua
+	 * @param sesion
+	 * @param sala
+	 * @return true si se ha realizado correctamente y false si ha fallado
+	 */
 	public Boolean anadirSesionASala(Sesion sesion, int sala) {
+		
+		Boolean check;
 		
 		if (sesion == null || sala <= 0 || sala > Sala.getContador()) {
 			return false;
@@ -133,7 +160,15 @@ public class Cine {
 				for (Sala sal : listaSalas) {
 					for (Sesion ses : sal.getSesiones()) {
 						if (ses == sesion) {
-							s.anadirSesion(sesion);
+							check = s.anadirSesion(sesion);
+							if(check == false) {
+								return false;
+							}
+							check = ses.getSala().getSesiones().remove(sesion);
+							if(check == false) {
+								return false;
+							}
+							
 							sesion.setSala(s);
 							return true;
 						}
@@ -143,8 +178,18 @@ public class Cine {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Si la sesion y la sala estan almacenadas en nuestro cine, cambia la pelicula de la sesion a la del parametro de entrada
+	 * @param nombre de la pelicula
+	 * @param sesion
+	 * @return true si se ha realizado correctamente y false si ha fallado
+	 */
 	public Boolean anadirPeliculaASesion(String peli, Sesion s) {
+		
+		if(s == null) {
+			return false;
+		}
 
 		for (Pelicula p : listaPeliculas) {
 			if (p.getTitulo() == peli) {
@@ -162,11 +207,22 @@ public class Cine {
 
 		return false;
 	}
-
+	
+	/**
+	 * Anade una entrada a la lista de entradas, actualizando las butacas vendidas
+	 * @param sesion
+	 * @return null si ha fallado y la entrada vendida si se ha realizado correctamente
+	 */
 	public Entrada venderEntrada(Sesion s) {
 
-		Calendar fecha = s.getFecha();
+		Calendar fecha;
 		Entrada entrada;
+		
+		if(s == null) {
+			return null;
+		}
+		
+		fecha = s.getFecha();
 
 		for (Sala sala : listaSalas) {
 			for (Sesion ses : sala.getSesiones()) {
@@ -186,6 +242,11 @@ public class Cine {
 		}
 		return null;
 	}
+	
+	/**
+	 * Calcula la suma del precio de las entradas vendidas
+	 * @return el total recaudado
+	 */
 
 	public Float informacionRecaudacion() {
 
@@ -198,6 +259,10 @@ public class Cine {
 		return total;
 	}
 
+	/**
+	 * Forma una cadena con la informacion de todas las peliculas en la cartelera
+	 * @return la informacion de la cartelera
+	 */
 	public String informacionCartelera() {
 
 		String cadena = "";
@@ -207,7 +272,11 @@ public class Cine {
 		}
 		return cadena;
 	}
-
+	
+	/**
+	 * Forma una cadena con la informacion de todas las sesiones del cine
+	 * @return la informacion de las sesiones
+	 */
 	public String informacionSesiones() {
 
 		List<Sesion> sesiones = new ArrayList<Sesion>();
