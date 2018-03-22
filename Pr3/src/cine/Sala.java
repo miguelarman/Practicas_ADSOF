@@ -103,7 +103,7 @@ public class Sala {
 		}
 		
 		for (Sesion sesionAux : sesiones) { // Comprueba que no se solapa a otra sesion
-			if (sesionAux.finalSesion().after(sesion.getFecha()) || sesionAux.equals(sesion)) {
+			if (sesionAux.finalSesion().after(sesion.getFecha())) {
 				return false;
 			}
 			
