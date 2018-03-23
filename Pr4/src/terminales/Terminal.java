@@ -5,17 +5,18 @@ import java.util.List;
 
 import interfaces.INodo;
 
-public class Terminal implements INodo {
+public abstract class Terminal implements INodo {
 	
-	private String raiz;
+	private static String raiz;
 	
 	public Terminal(String raiz) {
-		this.raiz = raiz;
+		Terminal.raiz = raiz;
 	}
+	
 
 	@Override
 	public String getRaiz() {
-		return this.raiz;
+		return Terminal.raiz;
 	}
 
 	@Override
@@ -24,9 +25,7 @@ public class Terminal implements INodo {
 	}
 
 	@Override
-	public void incluirDescendiente(INodo nodo) {
-		// TODO
-	}
+	public void incluirDescendiente(INodo nodo) {}
 
 	@Override
 	public double calcular() {
@@ -35,10 +34,6 @@ public class Terminal implements INodo {
 	}
 
 	@Override
-	public INodo copy() {
-		INodo nuevo = new Terminal(this.raiz);
-		
-		return nuevo;
-	}
+	public abstract INodo copy();
 
 }

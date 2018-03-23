@@ -2,6 +2,11 @@ package testers;
 
 import interfaces.*;
 
+import funciones.*;
+import terminales.*;
+
+import individuos.Individuo;
+
 public class TesterIndividuos {
 	public static void main(String[] args) {
 		Terminal x = new TerminalAritmetico("x");

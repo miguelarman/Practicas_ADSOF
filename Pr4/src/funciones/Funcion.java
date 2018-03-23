@@ -5,7 +5,7 @@ import java.util.List;
 
 import interfaces.INodo;
 
-public class Funcion implements INodo, Cloneable {
+public abstract class Funcion implements INodo, Cloneable {
 	
 	private String raiz;
 	private List<INodo> descendientes;
@@ -38,22 +38,9 @@ public class Funcion implements INodo, Cloneable {
 	}
 
 	@Override
-	public double calcular() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public abstract double calcular();
 
 	@Override
-	public INodo copy() {
-		
-		INodo nuevo = new Funcion(this.raiz);
-		
-		for (INodo n : this.descendientes) {
-			INodo des = n.copy();
-			n.incluirDescendiente(des);
-		}
-		
-		return nuevo;
-	}
+	public abstract INodo copy();
 
 }
