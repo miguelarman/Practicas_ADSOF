@@ -20,5 +20,4 @@ public class FuncionResta extends Funcion {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

@@ -28,11 +28,11 @@ public abstract class Funcion implements INodo, Cloneable {
 	@Override
 	public void incluirDescendiente(INodo nodo) {
 
-		for (INodo n : this.descendientes) {
-			if (n.equals(nodo)) {
-				return;
-			}
-		}
+//		for (INodo n : this.descendientes) {
+//			if (n.equals(nodo)) {
+//				return;
+//			}
+//		}
 		
 		this.descendientes.add(nodo);
 	}
@@ -42,5 +42,20 @@ public abstract class Funcion implements INodo, Cloneable {
 
 	@Override
 	public abstract INodo copy();
+	
+	@Override
+	public String toString() {
+		String string = "";
+		
+		string += "( " + this.getRaiz();
+		
+		for (INodo n : this.getDescendientes()) {
+			string += " " + n;
+		}
+		
+		string += " )";
+		
+		return string;
+	}
 
 }

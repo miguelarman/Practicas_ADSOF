@@ -20,5 +20,4 @@ public class FuncionMultiplicacion extends Funcion {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

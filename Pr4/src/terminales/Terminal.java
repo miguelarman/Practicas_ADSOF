@@ -35,5 +35,8 @@ public abstract class Terminal implements INodo {
 
 	@Override
 	public abstract INodo copy();
+	
+	@Override
+	public abstract String toString();
 
 }

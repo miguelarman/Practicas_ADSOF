@@ -8,17 +8,17 @@ import interfaces.INodo;
 import terminales.Terminal;
 
 public class Individuo implements IIndividuo {
+	
+	private INodo expresion;
 
 	@Override
 	public INodo getExpresion() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.expresion;
 	}
 
 	@Override
 	public void setExpresion(INodo expresion) {
-		// TODO Auto-generated method stub
-		
+		this.expresion = expresion;
 	}
 
 	@Override
@@ -53,8 +53,7 @@ public class Individuo implements IIndividuo {
 
 	@Override
 	public void writeIndividuo() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Expresión: " + this.getExpresion());
 	}
 
 }

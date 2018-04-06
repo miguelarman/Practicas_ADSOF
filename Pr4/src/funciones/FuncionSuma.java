@@ -20,5 +20,4 @@ public class FuncionSuma extends Funcion {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
