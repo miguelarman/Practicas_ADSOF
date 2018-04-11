@@ -3,6 +3,7 @@ package testers;
 import java.util.ArrayList;
 import java.util.List;
 
+import cruce.PruebaCruce;
 import excepciones.CruceNuloException;
 import funciones.*;
 import individuos.*;
