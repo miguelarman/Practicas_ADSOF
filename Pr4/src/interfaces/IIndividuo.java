@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.util.HashMap;
 import java.util.List;
 
 import funciones.Funcion;
@@ -13,6 +14,8 @@ public interface IIndividuo {
 	public double getFitness();
 
 	public void setFitness(double fitness);
+	
+	public HashMap<Integer, INodo> getEtiquetas();
 
 	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Funcion> funciones);
 

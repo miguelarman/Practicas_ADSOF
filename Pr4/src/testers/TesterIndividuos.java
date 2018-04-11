@@ -29,6 +29,7 @@ public class TesterIndividuos {
 		indiv.setExpresion(resta);
 		System.out.println();
 		System.out.println("INDIVIDUO");
+		System.out.println(indiv.getExpresion().getDescendientes().size());
 		indiv.writeIndividuo();
 	}
 }

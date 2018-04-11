@@ -33,7 +33,11 @@ public class Individuo implements IIndividuo {
 	public void setFitness(double fitness) {
 		this.fitness = fitness;
 	}
-
+	
+	@Override
+	public HashMap<Integer, INodo> getEtiquetas(){
+		return this.etiquetas;
+	}
 	@Override
 	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Funcion> funciones) {
 		// TODO Auto-generated method stub
@@ -47,7 +51,10 @@ public class Individuo implements IIndividuo {
 
 	@Override
 	public int getNumeroNodos() {
-		// TODO Auto-generated method stub
+		
+		int i = 1;
+		for(INodo n: expresion.getDescendientes()) {
+		}
 		return 0;
 	}
 	
