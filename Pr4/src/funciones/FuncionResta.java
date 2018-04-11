@@ -5,14 +5,22 @@ import interfaces.INodo;
 public class FuncionResta extends Funcion {
 
 	public FuncionResta(String raiz, int i) {
-		super(raiz);
-		// TODO Auto-generated constructor stub
+		super(raiz, i);
 	}
 
 	@Override
 	public double calcular() {
-		// TODO Auto-generated method stub
-		return 0;
+		double resultado = 0.0;
+				
+		for (int i = 0; i < this.getDescendientes().size(); i++) {
+			if (i == 0) {
+				resultado += this.getDescendientes().get(i).calcular();
+			} else {
+				resultado -= this.getDescendientes().get(i).calcular();
+			}
+		}
+		
+		return resultado;
 	}
 
 	@Override

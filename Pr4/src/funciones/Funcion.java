@@ -9,10 +9,12 @@ public abstract class Funcion implements INodo, Cloneable {
 	
 	private String raiz;
 	private List<INodo> descendientes;
+	private Integer maximosDescendientes;
 	
-	public Funcion(String raiz) {
+	public Funcion(String raiz, Integer maximosDescendientes) {
 		this.raiz = raiz;
 		this.descendientes = new ArrayList<INodo>();
+		this.maximosDescendientes = maximosDescendientes;
 	}
 
 	@Override
@@ -27,14 +29,9 @@ public abstract class Funcion implements INodo, Cloneable {
 
 	@Override
 	public void incluirDescendiente(INodo nodo) {
-
-//		for (INodo n : this.descendientes) {
-//			if (n.equals(nodo)) {
-//				return;
-//			}
-//		}
-		
-		this.descendientes.add(nodo);
+		if (this.descendientes.size() < this.maximosDescendientes) {
+			this.descendientes.add(nodo);
+		}
 	}
 
 	@Override

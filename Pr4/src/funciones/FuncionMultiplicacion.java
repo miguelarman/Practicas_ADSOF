@@ -1,18 +1,26 @@
 package funciones;
 
+import java.util.List;
+
 import interfaces.INodo;
 
 public class FuncionMultiplicacion extends Funcion {
 
 	public FuncionMultiplicacion(String raiz, int i) {
-		super(raiz);
-		// TODO Auto-generated constructor stub
+		super(raiz, i);
 	}
 
 	@Override
 	public double calcular() {
-		// TODO Auto-generated method stub
-		return 0;
+		double resultado = 1.0;
+		
+		List<INodo> descendientes = this.getDescendientes();
+		
+		for (INodo nodo : descendientes) {
+			resultado *= nodo.calcular();
+		}
+		
+		return resultado;
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import terminales.Terminal;
 public class Individuo implements IIndividuo {
 	
 	private INodo expresion;
+	private double fitness;
 
 	@Override
 	public INodo getExpresion() {
@@ -23,14 +24,12 @@ public class Individuo implements IIndividuo {
 
 	@Override
 	public double getFitness() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.fitness;
 	}
 
 	@Override
 	public void setFitness(double fitness) {
-		// TODO Auto-generated method stub
-		
+		this.fitness = fitness;
 	}
 
 	@Override
@@ -41,8 +40,7 @@ public class Individuo implements IIndividuo {
 
 	@Override
 	public double calcularExpresion() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.expresion.calcular();
 	}
 
 	@Override

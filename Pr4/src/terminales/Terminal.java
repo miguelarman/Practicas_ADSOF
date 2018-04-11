@@ -28,10 +28,7 @@ public abstract class Terminal implements INodo {
 	public void incluirDescendiente(INodo nodo) {}
 
 	@Override
-	public double calcular() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public abstract double calcular();
 
 	@Override
 	public abstract INodo copy();

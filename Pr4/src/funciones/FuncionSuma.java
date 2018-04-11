@@ -5,14 +5,18 @@ import interfaces.INodo;
 public class FuncionSuma extends Funcion {
 
 	public FuncionSuma(String raiz, int i) {
-		super(raiz);
-		// TODO Auto-generated constructor stub
+		super(raiz, i);
 	}
 
 	@Override
 	public double calcular() {
-		// TODO Auto-generated method stub
-		return 0;
+		double resultado = 0.0;
+		
+		for (INodo nodo : this.getDescendientes()) {
+			resultado += nodo.calcular();
+		}
+		
+		return resultado;
 	}
 
 	@Override
