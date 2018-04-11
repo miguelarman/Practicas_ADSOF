@@ -57,7 +57,7 @@ public class DominioAritmetico implements IDominio {
 			double resultado = individuo.calcularExpresion();
 			double valorEsperado = this.valoresPrueba.get(valor);
 			
-			if (Math.abs(resultado - valorEsperado) < DominioAritmetico.margen ) {
+			if (Math.abs(resultado - valorEsperado) <= DominioAritmetico.margen ) {
 				fitness ++;
 			}
 			
