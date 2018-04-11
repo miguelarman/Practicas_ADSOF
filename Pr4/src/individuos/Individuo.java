@@ -51,11 +51,8 @@ public class Individuo implements IIndividuo {
 
 	@Override
 	public int getNumeroNodos() {
-		
-		int i = 1;
-		for(INodo n: expresion.getDescendientes()) {
-		}
-		return 0;
+		int numNodos = expresion.contarHijos() + 1;
+		return numNodos;
 	}
 	
 	@Override

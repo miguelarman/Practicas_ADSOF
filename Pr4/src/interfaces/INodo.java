@@ -16,4 +16,6 @@ public interface INodo {
 	public INodo copy();
 
 	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i);
+	
+	public int contarHijos();
 }

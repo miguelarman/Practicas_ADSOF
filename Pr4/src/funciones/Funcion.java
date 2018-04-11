@@ -53,6 +53,14 @@ public abstract class Funcion implements INodo, Cloneable {
 		return i;
 	}
 	
+	public int contarHijos() {
+		int numHijos = 0;
+		for(INodo n : descendientes) {
+			numHijos += n.contarHijos();
+		}
+		return numHijos;
+	}
+	
 	@Override
 	public String toString() {
 		String string = "";

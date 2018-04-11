@@ -30,4 +30,9 @@ public class TerminalAritmetico extends Terminal {
 	public double calcular() {
 		return TerminalAritmetico.valor;
 	}
+
+	@Override
+	public int contarHijos() {
+		return 0;
+	}
 }
