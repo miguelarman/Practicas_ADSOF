@@ -1,6 +1,7 @@
 package funciones;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import interfaces.INodo;
@@ -39,6 +40,18 @@ public abstract class Funcion implements INodo, Cloneable {
 
 	@Override
 	public abstract INodo copy();
+	
+	@Override
+	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i) {
+		etiquetas.put(i, this);
+		i++;
+		
+		for (INodo nodo : this.getDescendientes()) {
+			i = nodo.etiquetaNodoRecursivo(etiquetas, i);
+		}
+		
+		return i;
+	}
 	
 	@Override
 	public String toString() {

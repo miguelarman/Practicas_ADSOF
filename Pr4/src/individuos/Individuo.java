@@ -1,5 +1,6 @@
 package individuos;
 
+import java.util.HashMap;
 import java.util.List;
 
 import funciones.Funcion;
@@ -11,6 +12,7 @@ public class Individuo implements IIndividuo {
 	
 	private INodo expresion;
 	private double fitness;
+	private HashMap<Integer, INodo> etiquetas;
 
 	@Override
 	public INodo getExpresion() {
@@ -48,10 +50,17 @@ public class Individuo implements IIndividuo {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public void etiquetaNodos() {
+		this.etiquetas = new HashMap<Integer, INodo>();
+		int i = 0;
+		
+		i = this.expresion.etiquetaNodoRecursivo(this.etiquetas, i);
+	}
 
 	@Override
 	public void writeIndividuo() {
 		System.out.println("Expresión: " + this.getExpresion());
 	}
-
 }

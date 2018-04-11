@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface INodo {
@@ -13,4 +14,6 @@ public interface INodo {
 	public double calcular();
 
 	public INodo copy();
+
+	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i);
 }
