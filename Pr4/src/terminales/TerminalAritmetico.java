@@ -1,7 +1,5 @@
 package terminales;
 
-import java.util.HashMap;
-
 import interfaces.INodo;
 
 public class TerminalAritmetico extends Terminal {
@@ -32,11 +30,4 @@ public class TerminalAritmetico extends Terminal {
 	public double calcular() {
 		return TerminalAritmetico.valor;
 	}
-
-	@Override
-	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i) {
-		etiquetas.put(i, this);
-		return i++;
-	}
-
 }
