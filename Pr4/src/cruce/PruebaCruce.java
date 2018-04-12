@@ -21,7 +21,11 @@ public class PruebaCruce {
 			throw new CruceNuloException();
 		}
 		INodo n1 = prog1.getEtiquetas().get(randomNum1);
+		INodo n2 = prog2.getEtiquetas().get(randomNum2);
 		
+		INodo nodoAux = n1.copy();
+		n1 = n2.copy();
+		n2 = nodoAux.copy();
 		
 		return null;
 	}

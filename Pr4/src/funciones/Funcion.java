@@ -10,7 +10,7 @@ public abstract class Funcion implements INodo, Cloneable {
 	
 	private String raiz;
 	private List<INodo> descendientes;
-	private Integer maximosDescendientes;
+	protected Integer maximosDescendientes;
 	
 	public Funcion(String raiz, Integer maximosDescendientes) {
 		this.raiz = raiz;

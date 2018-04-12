@@ -25,7 +25,12 @@ public class FuncionResta extends Funcion {
 
 	@Override
 	public INodo copy() {
-		// TODO Auto-generated method stub
-		return null;
+		FuncionResta copy = new FuncionResta(this.getRaiz(), this.maximosDescendientes);
+		
+		for (INodo nodo : this.getDescendientes()) {
+			copy.incluirDescendiente(nodo.copy());
+		}
+		
+		return copy;
 	}
 }

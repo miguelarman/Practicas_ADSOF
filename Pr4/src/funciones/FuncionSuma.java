@@ -21,7 +21,12 @@ public class FuncionSuma extends Funcion {
 
 	@Override
 	public INodo copy() {
-		// TODO Auto-generated method stub
-		return null;
+		FuncionSuma copy = new FuncionSuma(this.getRaiz(), this.maximosDescendientes);
+		
+		for (INodo nodo : this.getDescendientes()) {
+			copy.incluirDescendiente(nodo.copy());
+		}
+		
+		return copy;
 	}
 }

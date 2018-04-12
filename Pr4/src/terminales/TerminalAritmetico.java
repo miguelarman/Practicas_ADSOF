@@ -13,8 +13,8 @@ public class TerminalAritmetico extends Terminal {
 
 	@Override
 	public INodo copy() {
-		// TODO Auto-generated method stub
-		return null;
+		TerminalAritmetico copy = new TerminalAritmetico(this.getRaiz());
+		return copy;
 	}
 	
 	public static void setValor(Integer i) {

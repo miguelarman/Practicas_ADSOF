@@ -25,7 +25,12 @@ public class FuncionMultiplicacion extends Funcion {
 
 	@Override
 	public INodo copy() {
-		// TODO Auto-generated method stub
-		return null;
+		FuncionMultiplicacion copy = new FuncionMultiplicacion(this.getRaiz(), this.maximosDescendientes);
+		
+		for (INodo nodo : this.getDescendientes()) {
+			copy.incluirDescendiente(nodo.copy());
+		}
+		
+		return copy;
 	}
 }
