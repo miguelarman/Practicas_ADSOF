@@ -67,4 +67,18 @@ public class Individuo implements IIndividuo {
 	public void writeIndividuo() {
 		System.out.println("Expresión: " + this.getExpresion());
 	}
+
+	@Override
+	public IIndividuo copy() {
+		Individuo nuevo = new Individuo();
+		
+		nuevo.expresion = this.expresion.copy();
+		nuevo.fitness = this.fitness;
+		nuevo.etiquetas = new HashMap<>();
+		for (Integer i : this.etiquetas.keySet()) {
+			nuevo.etiquetas.put(i, this.etiquetas.get(i).copy());
+		}
+		
+		return nuevo;
+	}
 }

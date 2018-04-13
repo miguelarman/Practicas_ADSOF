@@ -31,6 +31,8 @@ public class FuncionMultiplicacion extends Funcion {
 			copy.incluirDescendiente(nodo.copy());
 		}
 		
+		copy.setPadre(this.getPadre());
+		
 		return copy;
 	}
 }

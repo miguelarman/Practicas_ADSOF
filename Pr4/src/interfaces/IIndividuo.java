@@ -26,4 +26,6 @@ public interface IIndividuo {
 	public void writeIndividuo();
 
 	public void etiquetaNodos();
+
+	public IIndividuo copy();
 }

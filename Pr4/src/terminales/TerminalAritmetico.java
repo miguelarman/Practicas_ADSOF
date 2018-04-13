@@ -14,6 +14,7 @@ public class TerminalAritmetico extends Terminal {
 	@Override
 	public INodo copy() {
 		TerminalAritmetico copy = new TerminalAritmetico(this.getRaiz());
+		copy.setPadre(this.getPadre());
 		return copy;
 	}
 	
@@ -29,10 +30,5 @@ public class TerminalAritmetico extends Terminal {
 	@Override
 	public double calcular() {
 		return TerminalAritmetico.valor;
-	}
-
-	@Override
-	public int contarHijos() {
-		return 0;
 	}
 }

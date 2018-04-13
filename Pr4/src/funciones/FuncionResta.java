@@ -31,6 +31,8 @@ public class FuncionResta extends Funcion {
 			copy.incluirDescendiente(nodo.copy());
 		}
 		
+		copy.setPadre(this.getPadre());
+		
 		return copy;
 	}
 }

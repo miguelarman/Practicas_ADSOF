@@ -11,11 +11,13 @@ public abstract class Funcion implements INodo, Cloneable {
 	private String raiz;
 	private List<INodo> descendientes;
 	protected Integer maximosDescendientes;
+	private INodo padre;
 	
 	public Funcion(String raiz, Integer maximosDescendientes) {
 		this.raiz = raiz;
 		this.descendientes = new ArrayList<INodo>();
 		this.maximosDescendientes = maximosDescendientes;
+		this.padre = null;
 	}
 
 	@Override
@@ -32,6 +34,8 @@ public abstract class Funcion implements INodo, Cloneable {
 	public void incluirDescendiente(INodo nodo) {
 		if (this.descendientes.size() < this.maximosDescendientes) {
 			this.descendientes.add(nodo);
+			
+			this.descendientes.get(this.descendientes.size() - 1).setPadre(this);
 		}
 	}
 
@@ -42,7 +46,7 @@ public abstract class Funcion implements INodo, Cloneable {
 	public abstract INodo copy();
 	
 	@Override
-	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i) {
+	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i) {		
 		etiquetas.put(i, this);
 		i++;
 		
@@ -57,6 +61,7 @@ public abstract class Funcion implements INodo, Cloneable {
 		int numHijos = 0;
 		for(INodo n : descendientes) {
 			numHijos += n.contarHijos();
+			numHijos++;
 		}
 		return numHijos;
 	}
@@ -75,5 +80,14 @@ public abstract class Funcion implements INodo, Cloneable {
 		
 		return string;
 	}
-
+	
+	@Override
+	public INodo getPadre() {
+		return this.padre;
+	}
+	
+	@Override
+	public void setPadre(INodo nodo) {
+		this.padre = nodo;
+	}
 }

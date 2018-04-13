@@ -18,4 +18,8 @@ public interface INodo {
 	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i);
 	
 	public int contarHijos();
+	
+	public INodo getPadre();
+
+	public void setPadre(INodo nodo);
 }

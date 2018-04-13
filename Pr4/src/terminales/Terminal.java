@@ -9,6 +9,7 @@ import interfaces.INodo;
 public abstract class Terminal implements INodo {
 	
 	private static String raiz;
+	private INodo padre;
 	
 	public Terminal(String raiz) {
 		Terminal.raiz = raiz;
@@ -37,10 +38,30 @@ public abstract class Terminal implements INodo {
 	@Override
 	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i) {
 		etiquetas.put(i, this);
-		return i++;
+		i += 1;
+		return i;
 	}
 	
 	@Override
 	public abstract String toString();
+	
+	@Override
+	public INodo getPadre() {
+		return this.padre;
+	}
+	
+	@Override
+	public void setPadre(INodo nodo) {
+		this.padre = nodo;
+	}
 
+	@Override
+	public int contarHijos() {
+		return 0;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return false;
+	}
 }

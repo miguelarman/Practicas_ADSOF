@@ -27,7 +27,7 @@ public class TesterCruce {
 
 		IIndividuo prog1 = new Individuo();
 		prog1.setExpresion(resta);
-		prog1.etiquetaNodos();
+		prog1.etiquetaNodos();		
 		IIndividuo prog2 = new Individuo();
 		prog2.setExpresion(suma);
 		prog2.etiquetaNodos();
