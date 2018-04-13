@@ -64,5 +64,13 @@ public abstract class Terminal implements INodo {
 	public boolean equals(Object o) {
 		return false;
 	}
+	
+	@Override
+	public void actualizarPadres() {
+		for (INodo hijo : this.getDescendientes()) {
+			hijo.setPadre(this);
+			hijo.actualizarPadres();
+		}
+	}
 
 }

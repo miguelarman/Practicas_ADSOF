@@ -79,6 +79,8 @@ public class Individuo implements IIndividuo {
 			nuevo.etiquetas.put(i, this.etiquetas.get(i).copy());
 		}
 		
+		nuevo.getExpresion().actualizarPadres();
+		
 		return nuevo;
 	}
 }

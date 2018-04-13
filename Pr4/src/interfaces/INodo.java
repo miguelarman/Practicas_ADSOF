@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface INodo {
-
+	
 	public String getRaiz();
 
 	public List<INodo> getDescendientes();
@@ -22,4 +22,6 @@ public interface INodo {
 	public INodo getPadre();
 
 	public void setPadre(INodo nodo);
+	
+	public void actualizarPadres();
 }

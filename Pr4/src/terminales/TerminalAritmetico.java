@@ -15,6 +15,7 @@ public class TerminalAritmetico extends Terminal {
 	public INodo copy() {
 		TerminalAritmetico copy = new TerminalAritmetico(this.getRaiz());
 		copy.setPadre(this.getPadre());
+		copy.actualizarPadres();
 		return copy;
 	}
 	

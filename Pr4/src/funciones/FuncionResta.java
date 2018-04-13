@@ -33,6 +33,8 @@ public class FuncionResta extends Funcion {
 		
 		copy.setPadre(this.getPadre());
 		
+		copy.actualizarPadres();
+		
 		return copy;
 	}
 	

@@ -93,4 +93,12 @@ public abstract class Funcion implements INodo, Cloneable {
 	
 	@Override
 	public abstract boolean equals(Object o);
+	
+	@Override
+	public void actualizarPadres() {
+		for (INodo hijo : this.getDescendientes()) {
+			hijo.setPadre(this);
+			hijo.actualizarPadres();
+		}
+	}
 }

@@ -33,6 +33,8 @@ public class FuncionMultiplicacion extends Funcion {
 		
 		copy.setPadre(this.getPadre());
 		
+		copy.actualizarPadres();
+		
 		return copy;
 	}
 	
