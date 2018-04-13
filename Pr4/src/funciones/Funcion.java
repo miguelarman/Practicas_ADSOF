@@ -90,4 +90,7 @@ public abstract class Funcion implements INodo, Cloneable {
 	public void setPadre(INodo nodo) {
 		this.padre = nodo;
 	}
+	
+	@Override
+	public abstract boolean equals(Object o);
 }

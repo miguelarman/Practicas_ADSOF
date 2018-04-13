@@ -64,4 +64,5 @@ public abstract class Terminal implements INodo {
 	public boolean equals(Object o) {
 		return false;
 	}
+
 }

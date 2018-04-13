@@ -35,4 +35,31 @@ public class FuncionMultiplicacion extends Funcion {
 		
 		return copy;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof FuncionMultiplicacion)) {
+			return false;
+		} else {
+			FuncionMultiplicacion f = (FuncionMultiplicacion) o;
+			
+			if (f.maximosDescendientes != this.maximosDescendientes) {
+				return false;
+			} else if (f.getRaiz().compareTo(this.getRaiz()) != 0) {
+				return false;
+			} else {
+				if (f.getDescendientes().size() != this.getDescendientes().size()) {
+					return false;
+				} else {
+					for (int i = 0; i < f.getDescendientes().size(); i++) {
+						if (!(this.getDescendientes().get(i)).equals(f.getDescendientes().get(i))) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		
+		return true;
+	}
 }
