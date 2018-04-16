@@ -24,7 +24,7 @@ public class TesterSwap {
 		}
 		
 		try {
-			Algoritmo alg = new Algoritmo(7, 150, 0.9, 1500, 8);
+			Algoritmo alg = new Algoritmo(5, 150, 0.9, 5000, 8);
 			alg.ejecutar(d);
 		} catch (ArgumentosInvalidosAlgoritmo e) {
 			// TODO Auto-generated catch block
