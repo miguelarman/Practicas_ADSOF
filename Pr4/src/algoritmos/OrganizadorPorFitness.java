@@ -11,7 +11,7 @@ public class OrganizadorPorFitness implements Comparator<IIndividuo> {
 		Double fitness1 = o1.getFitness();
 		Double fitness2 = o2.getFitness();
 		
-		return fitness1.compareTo(fitness2);
+		return fitness2.compareTo(fitness1);
 	}
 
 }

@@ -21,14 +21,14 @@ public class Algoritmo implements IAlgoritmo {
 	private List<Funcion> conjuntoFunciones;
 	private int profundidadMaximaInicial;
 	private int numeroIndividuos;
-	private int probabilidadCruce;
+	private double probabilidadCruce;
 	private int numeroMaximoGeneraciones;
 	private int k;
 	private IDominio dominio;
 	
-	public Algoritmo(int profundidadMaximaInicial, int numeroIndividuos, int probabilidadCruce,
+	public Algoritmo(int profundidadMaximaInicial, int numeroIndividuos, double probabilidadCruce,
 			int numeroMaximoGeneraciones, int k) throws ArgumentosInvalidosAlgoritmo {
-		if (profundidadMaximaInicial <= 0 || numeroIndividuos <= 0 || probabilidadCruce < 0 || probabilidadCruce > 1
+		if (profundidadMaximaInicial <= 0 || numeroIndividuos <= 0 || probabilidadCruce < 0.0 || probabilidadCruce > 1.0
 				|| numeroMaximoGeneraciones <= 0 || k < numeroIndividuos) {
 			throw new ArgumentosInvalidosAlgoritmo();
 		}
@@ -278,14 +278,37 @@ public class Algoritmo implements IAlgoritmo {
 	@Override
 	public void ejecutar(IDominio dominio) {
 		
+		Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
+		int generacion = 1;
 		this.dominio = dominio;
 		
 		this.crearPoblacion();
+		for(int i= 0; i < this.poblacion.size(); i++) {
+			dominio.calcularFitness(poblacion.get(i));
+		}
+		this.poblacion.sort(comparator);
+		System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
+		this.poblacion.get(0).writeIndividuo(); 
+		System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
 		
-		for (int i = 0; i < this.n_iteraciones; i++) {
+		if(this.poblacion.get(0).getFitness() == 20.0) {
+			System.out.println("El algoritmo va a acabar");
+			return;
+		}
+		for (int j = 0; j < this.numeroMaximoGeneraciones; j++) {
 			this.crearNuevaPoblacion();
+			for(int i= 0; i < this.poblacion.size(); i++) {
+				dominio.calcularFitness(poblacion.get(i));
+			}
+			this.poblacion.sort(comparator);
+			System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
+			this.poblacion.get(0).writeIndividuo(); 
+			System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
 			
-			// TODO Imprimimos datos para ver como se va ejecutando el algoritmo
+			if(this.poblacion.get(0).getFitness() == 20.0) {
+				System.out.println("El algoritmo va a acabar");
+				return;
+			}
 		}
 	}
 

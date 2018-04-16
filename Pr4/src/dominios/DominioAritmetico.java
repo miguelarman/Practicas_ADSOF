@@ -91,7 +91,7 @@ public class DominioAritmetico implements IDominio {
 				fitness ++;
 			}
 			
-			System.out.println("Valor " + valor + " <-> Rdo estimado: " + resultado + " <-> Rdo real: " + valorEsperado);
+			//System.out.println("Valor " + valor + " <-> Rdo estimado: " + resultado + " <-> Rdo real: " + valorEsperado);
 		}
 		
 		individuo.setFitness(fitness);
