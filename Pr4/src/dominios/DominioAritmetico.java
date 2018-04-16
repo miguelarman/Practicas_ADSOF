@@ -99,4 +99,7 @@ public class DominioAritmetico implements IDominio {
 		return fitness;
 	}
 
+	public static void setMargen(double margen) {
+		DominioAritmetico.margen = margen;
+	}
 }

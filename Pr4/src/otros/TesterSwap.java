@@ -23,8 +23,11 @@ public class TesterSwap {
 			e.printStackTrace();
 		}
 		
+		DominioAritmetico.setMargen(1.0);
+//		DominioAritmetico.setMargen(0.5);
+		
 		try {
-			Algoritmo alg = new Algoritmo(5, 150, 0.9, 10000, 32);
+			Algoritmo alg = new Algoritmo(5, 150, 0.9, 10000, 6);
 			alg.ejecutar(d);
 		} catch (ArgumentosInvalidosAlgoritmo e) {
 			// TODO Auto-generated catch block

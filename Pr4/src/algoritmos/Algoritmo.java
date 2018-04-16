@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import excepciones.ArgsDistintosFuncionesException;
@@ -187,8 +188,8 @@ public class Algoritmo implements IAlgoritmo {
 //			int indice1 = padre1.getDescendientes().indexOf(n1);
 //			int indice2 = padre2.getDescendientes().indexOf(n2);
 						
-			INodo aux1 = n1.copy(); INodo aux2 = n2.copy(); aux1.setPadre(padre2);
-			aux2.setPadre(padre1);
+			INodo aux1 = n1.copy(); INodo aux2 = n2.copy();
+			aux1.setPadre(padre2); aux2.setPadre(padre1);
 			
 			padre1.getDescendientes().remove(indice1);
 			padre1.getDescendientes().add(indice1, aux2.copy());
@@ -225,6 +226,7 @@ public class Algoritmo implements IAlgoritmo {
 		}
 		
 		// Conservamos el mejor individuo
+		Collections.shuffle(this.poblacion);
 		this.poblacion.sort(comparator);
 		individuosSinCruzar.add(this.poblacion.get(0).copy());
 		this.poblacion.remove(0);
@@ -297,8 +299,6 @@ public class Algoritmo implements IAlgoritmo {
 			this.dominio.calcularFitness(i);
 		}
 		
-		// Ordenamos la poblacion por fitness
-		nuevaPoblacion.sort(comparator);
 		
 		this.poblacion = nuevaPoblacion;
 	}
@@ -306,7 +306,6 @@ public class Algoritmo implements IAlgoritmo {
 	@Override
 	public void ejecutar(IDominio dominio) {
 		
-		Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
 		int generacion = 1;
 		this.dominio = dominio;
 		
@@ -353,18 +352,17 @@ public class Algoritmo implements IAlgoritmo {
 			}
 			this.poblacion.sort(comparator);
 			
-			// if (generacion % 100 == 0) {
+			 if (generacion % 50 == 0) {
 				System.out.println();
 				System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
 				this.poblacion.get(0).writeIndividuo(); 
 				System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
-			// }
+			 }
 			
 			if(this.poblacion.get(0).getFitness() >= 21.0) {
 				System.out.println("El algoritmo va a acabar porque se ha encontrado una solución óptima");
 				break;
 			}
-			
 			
 			// DEBUGGING
 //			for (IIndividuo i : this.poblacion) {
@@ -380,6 +378,13 @@ public class Algoritmo implements IAlgoritmo {
 		System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
 		this.poblacion.get(0).writeIndividuo(); 
 		System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
+		
+		
+		// DEBUGGING
+		for (IIndividuo i : this.poblacion) {
+			i.writeIndividuo();
+			System.out.print(i.getFitness());
+		}
 	}
 
 }
