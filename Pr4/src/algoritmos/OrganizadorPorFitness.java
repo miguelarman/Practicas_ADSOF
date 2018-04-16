@@ -11,7 +11,14 @@ public class OrganizadorPorFitness implements Comparator<IIndividuo> {
 		Double fitness1 = o1.getFitness();
 		Double fitness2 = o2.getFitness();
 		
-		return fitness2.compareTo(fitness1);
+		if (fitness2.compareTo(fitness1) != 0) {
+			return fitness2.compareTo(fitness1);
+		} else {
+			Integer numeroNodos1 = o1.getNumeroNodos();
+			Integer numeroNodos2 = o2.getNumeroNodos();
+			
+			return numeroNodos1.compareTo(numeroNodos2);
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package algoritmos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -218,6 +219,7 @@ public class Algoritmo implements IAlgoritmo {
 		List<IIndividuo> nuevaPoblacion = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosACruzar = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosSinCruzar = new ArrayList<IIndividuo>();
+		boolean mejorYaEnLaLista = false;
 		
 		Double maxFitness = 0.0;
 		
@@ -225,18 +227,16 @@ public class Algoritmo implements IAlgoritmo {
 			this.dominio.calcularFitness(i);
 		}
 		
-		// Calculamos el fitness maximo
+		// Conservamos el mejor individuo
 		this.poblacion.sort(comparator);
-		maxFitness = this.poblacion.get(0).getFitness();
+		individuosSinCruzar.add(this.poblacion.get(0).copy());
+		this.poblacion.remove(0);
+		
+		
+		Collections.shuffle(this.poblacion);
 		
 		for (IIndividuo individuo : this.poblacion) {
 			float aleatorio = (float) ThreadLocalRandom.current().nextDouble(0, 1);
-			
-			// Si es el mejor no lo cruzamos
-			if (individuo.getFitness() == maxFitness) {
-				individuosSinCruzar.add(individuo.copy());
-				continue;
-			}
 			
 			if (aleatorio < this.probabilidadCruce) {
 				individuosACruzar.add(individuo.copy());
@@ -248,6 +248,8 @@ public class Algoritmo implements IAlgoritmo {
 		// Generamos grupos de k individuos para cruzar
 		while(individuosACruzar.size() > k) {
 			List<IIndividuo> grupo = new ArrayList<IIndividuo>();
+			
+			Collections.shuffle(individuosACruzar);
 			
 			for (int i = 0; i < this.k; i++) {
 				int indiceAleatorio = ThreadLocalRandom.current().nextInt(0, individuosACruzar.size());
@@ -350,14 +352,16 @@ public class Algoritmo implements IAlgoritmo {
 			}
 			this.poblacion.sort(comparator);
 			
-			System.out.println();
-			System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
-			this.poblacion.get(0).writeIndividuo(); 
-			System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
+			// if (generacion % 100 == 0) {
+				System.out.println();
+				System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
+				this.poblacion.get(0).writeIndividuo(); 
+				System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
+			// }
 			
 			if(this.poblacion.get(0).getFitness() == 20.0) {
 				System.out.println("El algoritmo va a acabar porque se ha encontrado una solución óptima");
-				return;
+				break;
 			}
 			
 			
@@ -368,6 +372,13 @@ public class Algoritmo implements IAlgoritmo {
 //			}
 
 		}
+		
+		
+		System.out.println();System.out.println();System.out.println();
+		System.out.println("INDIVIDUO FINAL");
+		System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
+		this.poblacion.get(0).writeIndividuo(); 
+		System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
 	}
 
 }
