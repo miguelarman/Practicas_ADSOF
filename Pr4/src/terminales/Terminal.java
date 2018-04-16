@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import funciones.Funcion;
 import interfaces.INodo;
 
 public abstract class Terminal implements INodo {
@@ -27,7 +28,9 @@ public abstract class Terminal implements INodo {
 	}
 
 	@Override
-	public void incluirDescendiente(INodo nodo) {}
+	public void incluirDescendiente(INodo nodo) {
+		return;
+	}
 
 	@Override
 	public abstract double calcular();
@@ -41,7 +44,10 @@ public abstract class Terminal implements INodo {
 		i += 1;
 		return i;
 	}
-	
+	@Override
+	public void crearNodoAleatorioRecursivo(int profundidad, List<Terminal> terminales, List<Funcion> funciones) {
+		return;
+	}
 	@Override
 	public abstract String toString();
 	

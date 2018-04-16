@@ -32,4 +32,5 @@ public class TerminalAritmetico extends Terminal {
 	public double calcular() {
 		return TerminalAritmetico.valor;
 	}
+
 }

@@ -2,6 +2,7 @@ package individuos;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import funciones.Funcion;
 import interfaces.IIndividuo;
@@ -40,7 +41,16 @@ public class Individuo implements IIndividuo {
 	}
 	@Override
 	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Funcion> funciones) {
-		// TODO Auto-generated method stub
+		if(profundidad == 0) {
+			int randomNum = ThreadLocalRandom.current().nextInt(0, terminales.size());
+			expresion = terminales.get(randomNum).copy();
+		}
+		else {
+			int randomNum = ThreadLocalRandom.current().nextInt(0, funciones.size());
+			expresion = funciones.get(randomNum).copy();
+			expresion.crearNodoAleatorioRecursivo(profundidad - 1, terminales, funciones);
+		}
+		
 		
 	}
 
