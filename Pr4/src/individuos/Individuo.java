@@ -74,7 +74,7 @@ public class Individuo implements IIndividuo {
 		
 		nuevo.expresion = this.expresion.copy();
 		nuevo.fitness = this.fitness;
-		nuevo.etiquetas = new HashMap<>();
+		nuevo.etiquetas = new HashMap<Integer, INodo>();
 		for (Integer i : this.etiquetas.keySet()) {
 			nuevo.etiquetas.put(i, this.etiquetas.get(i).copy());
 		}

@@ -57,7 +57,7 @@ public class PruebaCruce {
 			nuevo2.etiquetaNodos();
 			
 			
-			List<IIndividuo> nuevos = new ArrayList<>();
+			List<IIndividuo> nuevos = new ArrayList<IIndividuo>();
 			nuevos.add(nuevo1);
 			nuevos.add(nuevo2);
 			return nuevos;
@@ -96,7 +96,7 @@ public class PruebaCruce {
 			nuevo2.etiquetaNodos();
 			
 			
-			List<IIndividuo> nuevos = new ArrayList<>();
+			List<IIndividuo> nuevos = new ArrayList<IIndividuo>();
 			nuevos.add(nuevo1);
 			nuevos.add(nuevo2);
 			return nuevos;
