@@ -25,6 +25,7 @@ public class Algoritmo implements IAlgoritmo {
 	private int numeroMaximoGeneraciones;
 	private int k;
 	private IDominio dominio;
+	Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
 	
 	public Algoritmo(int profundidadMaximaInicial, int numeroIndividuos, double probabilidadCruce,
 			int numeroMaximoGeneraciones, int k) throws ArgumentosInvalidosAlgoritmo {
@@ -209,7 +210,6 @@ public class Algoritmo implements IAlgoritmo {
 		List<IIndividuo> nuevaPoblacion = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosACruzar = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosSinCruzar = new ArrayList<IIndividuo>();
-		Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
 		
 		Double maxFitness = 0.0;
 		
@@ -296,6 +296,7 @@ public class Algoritmo implements IAlgoritmo {
 			return;
 		}
 		for (int j = 0; j < this.numeroMaximoGeneraciones; j++) {
+			n_iteraciones++;
 			this.crearNuevaPoblacion();
 			for(int i= 0; i < this.poblacion.size(); i++) {
 				dominio.calcularFitness(poblacion.get(i));
@@ -309,6 +310,7 @@ public class Algoritmo implements IAlgoritmo {
 				System.out.println("El algoritmo va a acabar");
 				return;
 			}
+
 		}
 	}
 
