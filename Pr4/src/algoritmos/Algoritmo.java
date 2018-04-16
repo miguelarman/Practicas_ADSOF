@@ -1,6 +1,7 @@
 package algoritmos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,6 +24,7 @@ public class Algoritmo implements IAlgoritmo {
 	private int probabilidadCruce;
 	private int numeroMaximoGeneraciones;
 	private int k;
+	private IDominio dominio;
 	
 	public Algoritmo(int profundidadMaximaInicial, int numeroIndividuos, int probabilidadCruce,
 			int numeroMaximoGeneraciones, int k) throws ArgumentosInvalidosAlgoritmo {
@@ -203,29 +205,88 @@ public class Algoritmo implements IAlgoritmo {
 
 	@Override
 	public void crearNuevaPoblacion() {
-		// TODO Auto-generated method stub
-		
-		// El método crearNuevaPoblacion crea una nueva población a partir de una
-		// población anterior, aplicando el operador de cruce y el paso directo de
-		// individuos no cruzados o elitistas
 
+		List<IIndividuo> nuevaPoblacion = new ArrayList<IIndividuo>();
+		List<IIndividuo> individuosACruzar = new ArrayList<IIndividuo>();
+		List<IIndividuo> individuosSinCruzar = new ArrayList<IIndividuo>();
+		Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
+		
+		Double maxFitness = 0.0;
+		
+		// Calculamos el fitness maximo
+		this.poblacion.sort(comparator);
+		maxFitness = this.poblacion.get(0).getFitness();
+		
+		for (IIndividuo individuo : this.poblacion) {
+			float aleatorio = (float) ThreadLocalRandom.current().nextDouble(0, 1);;
+			
+			// Si es el mejor no lo cruzamos
+			if (individuo.getFitness() == maxFitness) {
+				individuosSinCruzar.add(individuo.copy());
+				continue;
+			}
+			
+			if (aleatorio < this.probabilidadCruce) {
+				individuosACruzar.add(individuo.copy());
+			} else {
+				individuosSinCruzar.add(individuo.copy());
+			}
+		}
+		
+		// Generamos grupos de k individuos para cruzar
+		while(individuosACruzar.size() > k) {
+			List<IIndividuo> grupo = individuosACruzar.subList(0, this.k);
+			
+			// Elimina estos elementos
+			for (int i = 0; i < grupo.size(); i++) {
+				individuosACruzar.remove(0);
+			}
+			
+			// Ordenamos el grupo segun el fitness
+			grupo.sort(comparator);
+			
+			// Cruce de los dos mejores
+			List<IIndividuo> nodosCruzados;
+			
+			try {
+				nodosCruzados = this.cruce(grupo.get(0), grupo.get(1));
+				// Elimino los elementos cruzados
+				grupo.remove(0); grupo.remove(1);
+				
+				// Anado los nuevos elementos al grupo
+				grupo.addAll(nodosCruzados);
+			} catch (CruceNuloException e) {
+				
+			}
+			
+			// Anado los elementos del grupo a la nueva poblacion
+			nuevaPoblacion.addAll(grupo);
+			
+		}
+		
+		// Los elementos restantes (que no llegan a k) se pasan directamente
+		nuevaPoblacion.addAll(individuosACruzar);
+		
+		// Anadimos los elementos que no hemos cruzado
+		nuevaPoblacion.addAll(individuosSinCruzar);
+		
+		// Ordenamos la poblacion por fitness
+		
+		this.poblacion = nuevaPoblacion;
 	}
 
 	@Override
 	public void ejecutar(IDominio dominio) {
-		// TODO Auto-generated method stub
 		
-		// el método ejecutar equivale a un main para el algoritmo de programación
-		// genética e implementa el pseudocódigo comentado anteriormente. Cuando se crea
-		// un Algoritmo de Programación Genética se deben especificar algunos
-		// parámetros, como la profundidad máxima de los individuos en la población
-		// inicial, el número de individuos de la población, la probabilidad de cruce,
-		// el número máximo de generaciones y el valor de K par los torneos.
-
-		// La ejecución de los algoritmos de programación genética suele ser costosa en
-		// tiempo y recursos. Como información durante la ejecución basta con que
-		// muestres el número de generación, el mejor individuo encontrado en esa
-		// generación y el fitness de dicho individuo.
+		this.dominio = dominio;
+		
+		this.crearPoblacion();
+		
+		for (int i = 0; i < this.n_iteraciones; i++) {
+			this.crearNuevaPoblacion();
+			
+			// TODO Imprimimos datos para ver como se va ejecutando el algoritmo
+		}
 	}
 
 }
