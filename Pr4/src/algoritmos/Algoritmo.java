@@ -25,6 +25,7 @@ public class Algoritmo implements IAlgoritmo {
 	private int numeroMaximoGeneraciones;
 	private int k;
 	private IDominio dominio;
+	Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
 	
 	public Algoritmo(int profundidadMaximaInicial, int numeroIndividuos, int probabilidadCruce,
 			int numeroMaximoGeneraciones, int k) throws ArgumentosInvalidosAlgoritmo {
@@ -209,7 +210,6 @@ public class Algoritmo implements IAlgoritmo {
 		List<IIndividuo> nuevaPoblacion = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosACruzar = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosSinCruzar = new ArrayList<IIndividuo>();
-		Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
 		
 		Double maxFitness = 0.0;
 		
