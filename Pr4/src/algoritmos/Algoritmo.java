@@ -29,9 +29,16 @@ public class Algoritmo implements IAlgoritmo {
 	
 	public Algoritmo(int profundidadMaximaInicial, int numeroIndividuos, double probabilidadCruce,
 			int numeroMaximoGeneraciones, int k) throws ArgumentosInvalidosAlgoritmo {
-		if (profundidadMaximaInicial <= 0 || numeroIndividuos <= 0 || probabilidadCruce < 0.0 || probabilidadCruce > 1.0
-				|| numeroMaximoGeneraciones <= 0 || k < numeroIndividuos) {
-			throw new ArgumentosInvalidosAlgoritmo();
+		if (profundidadMaximaInicial <= 0) {
+			throw new ArgumentosInvalidosAlgoritmo("Argumento profundidadMaximaInicial invalido");
+		} else if (numeroIndividuos <= 0) {
+			throw new ArgumentosInvalidosAlgoritmo("Argumento numeroIndividuos invalido");
+		} else if (probabilidadCruce < 0.0 || probabilidadCruce > 1.0) {
+			throw new ArgumentosInvalidosAlgoritmo("Argumento probabilidadCruce invalido");
+		} else if (numeroMaximoGeneraciones <= 0) {
+			throw new ArgumentosInvalidosAlgoritmo("Argumento numeroMaximoGeneraciones invalido");
+		} else if (k > numeroIndividuos) {
+			throw new ArgumentosInvalidosAlgoritmo("Argumento k invalido");
 		}
 		this.profundidadMaximaInicial = profundidadMaximaInicial;
 		this.numeroIndividuos = numeroIndividuos;
@@ -271,6 +278,7 @@ public class Algoritmo implements IAlgoritmo {
 		nuevaPoblacion.addAll(individuosSinCruzar);
 		
 		// Ordenamos la poblacion por fitness
+		nuevaPoblacion.sort(comparator);
 		
 		this.poblacion = nuevaPoblacion;
 	}
@@ -287,6 +295,7 @@ public class Algoritmo implements IAlgoritmo {
 			dominio.calcularFitness(poblacion.get(i));
 		}
 		this.poblacion.sort(comparator);
+		
 		System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
 		this.poblacion.get(0).writeIndividuo(); 
 		System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
@@ -295,6 +304,7 @@ public class Algoritmo implements IAlgoritmo {
 			System.out.println("El algoritmo va a acabar");
 			return;
 		}
+		
 		for (int j = 0; j < this.numeroMaximoGeneraciones; j++) {
 			n_iteraciones++;
 			this.crearNuevaPoblacion();
@@ -302,12 +312,14 @@ public class Algoritmo implements IAlgoritmo {
 				dominio.calcularFitness(poblacion.get(i));
 			}
 			this.poblacion.sort(comparator);
+			
+			System.out.println();
 			System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
 			this.poblacion.get(0).writeIndividuo(); 
 			System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
 			
 			if(this.poblacion.get(0).getFitness() == 20.0) {
-				System.out.println("El algoritmo va a acabar");
+				System.out.println("El algoritmo va a acabar porque se ha encontrado una solución óptima");
 				return;
 			}
 
