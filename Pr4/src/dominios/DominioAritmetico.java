@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.*;
 
 import excepciones.ArgsDistintosFuncionesException;
-import funciones.Funcion;
+import excepciones.SimboloFuncionInvalido;
+import funciones.*;
 import interfaces.*;
 import terminales.Terminal;
 import terminales.TerminalAritmetico;
@@ -16,15 +17,44 @@ public class DominioAritmetico implements IDominio {
 
 	@Override
 	public List<Terminal> definirConjuntoTerminales(String... terminales) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Terminal> terminal = new ArrayList<Terminal>();
+		
+		for (int i = 0; i < terminales.length; i++) {
+			if (terminales[i].compareTo("x") == 0) {
+				terminal.add(new TerminalAritmetico(terminales[i]));
+			}
+		}
+		
+		return terminal;
 	}
 	
 	@Override
 	public List<Funcion> definirConjuntoFunciones(int[] argumentos, String... funciones)
-			throws ArgsDistintosFuncionesException {
-		// TODO Auto-generated method stub
-		return null;
+			throws ArgsDistintosFuncionesException, SimboloFuncionInvalido {
+		
+		if (argumentos.length != funciones.length) {
+			throw new ArgsDistintosFuncionesException();
+		}
+		
+		List<Funcion> lista = new ArrayList<Funcion>();
+		
+		for (int i = 0; i < argumentos.length; i++) {
+			switch(funciones[i]) {
+				case "+":
+		             lista.add(new FuncionSuma(funciones[i], argumentos[i]));
+		             break;
+				case "-":
+					 lista.add(new FuncionResta(funciones[i], argumentos[i]));
+		             break;
+				case "*":
+					 lista.add(new FuncionMultiplicacion(funciones[i], argumentos[i]));
+		             break;
+		        default:
+		        	throw new SimboloFuncionInvalido(funciones[i]);
+			}
+		}
+		
+		return lista;
 	}
 
 	@Override
