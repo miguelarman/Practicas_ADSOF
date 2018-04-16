@@ -9,8 +9,8 @@ import terminales.TerminalAritmetico;
 public class TesterSwap {
 
 	public static void main(String[] args) {
-		List<INodo> lista1 = new ArrayList<>();
-		List<INodo> lista2 = new ArrayList<>();
+		List<INodo> lista1 = new ArrayList<INodo>();
+		List<INodo> lista2 = new ArrayList<INodo>();
 		
 		lista1.add(new TerminalAritmetico("x"));
 		lista1.add(new FuncionMultiplicacion("*", 2));
