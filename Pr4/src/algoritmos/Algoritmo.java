@@ -219,10 +219,7 @@ public class Algoritmo implements IAlgoritmo {
 		List<IIndividuo> nuevaPoblacion = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosACruzar = new ArrayList<IIndividuo>();
 		List<IIndividuo> individuosSinCruzar = new ArrayList<IIndividuo>();
-		boolean mejorYaEnLaLista = false;
-		
-		Double maxFitness = 0.0;
-		
+				
 		for (IIndividuo i : this.poblacion) {
 			this.dominio.calcularFitness(i);
 		}
@@ -246,7 +243,7 @@ public class Algoritmo implements IAlgoritmo {
 		}
 		
 		// Generamos grupos de k individuos para cruzar
-		while(individuosACruzar.size() > k) {
+		while(individuosACruzar.size() >= k) {
 			List<IIndividuo> grupo = new ArrayList<IIndividuo>();
 			
 			Collections.shuffle(individuosACruzar);
@@ -273,6 +270,10 @@ public class Algoritmo implements IAlgoritmo {
 				nodosCruzados = this.cruce(grupo.get(0).copy(), grupo.get(1).copy());
 				// Elimino los elementos cruzados
 				grupo.remove(0); grupo.remove(1);
+				
+				// Calculo el nuevo fitness
+				this.dominio.calcularFitness(nodosCruzados.get(0));
+				this.dominio.calcularFitness(nodosCruzados.get(1));
 				
 				// Anado los nuevos elementos al grupo
 				grupo.addAll(nodosCruzados);
@@ -359,7 +360,7 @@ public class Algoritmo implements IAlgoritmo {
 				System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
 			// }
 			
-			if(this.poblacion.get(0).getFitness() == 20.0) {
+			if(this.poblacion.get(0).getFitness() >= 21.0) {
 				System.out.println("El algoritmo va a acabar porque se ha encontrado una solución óptima");
 				break;
 			}
