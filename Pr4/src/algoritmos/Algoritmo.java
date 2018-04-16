@@ -332,7 +332,7 @@ public class Algoritmo implements IAlgoritmo {
 		this.poblacion.get(0).writeIndividuo(); 
 		System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
 		
-		if(this.poblacion.get(0).getFitness() == 21.0) {
+		if(this.poblacion.get(0).getFitness() >= 20.0) {
 			System.out.println("El algoritmo va a acabar");
 			return;
 		}
