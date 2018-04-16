@@ -281,10 +281,13 @@ public class Algoritmo implements IAlgoritmo {
 		this.dominio = dominio;
 		
 		this.crearPoblacion();
+		this.n_iteraciones = 0;
 		
-		for (int i = 0; i < this.n_iteraciones; i++) {
+		for (int i = 0; i < this.numeroMaximoGeneraciones; i++) {
 			this.crearNuevaPoblacion();
+			this.n_iteraciones++;
 			
+			// TODO Comprueba si ha llegado a la solucion
 			// TODO Imprimimos datos para ver como se va ejecutando el algoritmo
 		}
 	}
