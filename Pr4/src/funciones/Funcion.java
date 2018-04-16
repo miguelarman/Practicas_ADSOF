@@ -3,8 +3,10 @@ package funciones;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import interfaces.INodo;
+import terminales.Terminal;
 
 public abstract class Funcion implements INodo, Cloneable {
 	
@@ -64,6 +66,25 @@ public abstract class Funcion implements INodo, Cloneable {
 			numHijos++;
 		}
 		return numHijos;
+	}
+	
+	@Override
+	public void crearNodoAleatorioRecursivo(int profundidad, List<Terminal> terminales, List<Funcion> funciones) {
+		int randomNum = ThreadLocalRandom.current().nextInt(2, this.maximosDescendientes + 1);
+		if(profundidad == 0) {
+			for(int i = 0; i < randomNum; i++) {
+				int randomNum2 = ThreadLocalRandom.current().nextInt(0, terminales.size());
+				this.incluirDescendiente(terminales.get(randomNum2).copy());
+			}
+		}
+		else {
+			for(int i = 0; i < randomNum; i++) {
+				int randomNum2 = ThreadLocalRandom.current().nextInt(0, funciones.size());
+				this.incluirDescendiente(funciones.get(randomNum2).copy());
+				this.getDescendientes().get(i).crearNodoAleatorioRecursivo(profundidad - 1, terminales, funciones);
+			}
+		}
+		
 	}
 	
 	@Override

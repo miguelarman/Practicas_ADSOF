@@ -3,6 +3,9 @@ package interfaces;
 import java.util.HashMap;
 import java.util.List;
 
+import funciones.Funcion;
+import terminales.Terminal;
+
 public interface INodo {
 	
 	public String getRaiz();
@@ -17,6 +20,8 @@ public interface INodo {
 
 	public int etiquetaNodoRecursivo(HashMap<Integer, INodo> etiquetas, int i);
 	
+	public void crearNodoAleatorioRecursivo(int profundidad, List<Terminal> terminales, List<Funcion> funciones);
+	
 	public int contarHijos();
 	
 	public INodo getPadre();
@@ -24,4 +29,6 @@ public interface INodo {
 	public void setPadre(INodo nodo);
 	
 	public void actualizarPadres();
+
+
 }
