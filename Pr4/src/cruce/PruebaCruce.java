@@ -15,7 +15,8 @@ public class PruebaCruce {
 		int randomNum1 = ThreadLocalRandom.current().nextInt(0, prog1.getNumeroNodos());
 		int randomNum2 = ThreadLocalRandom.current().nextInt(0, prog2.getNumeroNodos());
 
-		System.out.println(randomNum1 + " " + randomNum2);
+		System.out.println("Punto de cruce del progenitor 1: " + randomNum1);
+		System.out.println("Punto de cruce del progenitor 2: " + randomNum2);
 
 		if (randomNum1 == 0 && randomNum2 == 0) {
 			List<IIndividuo> lista = new ArrayList<IIndividuo>();
@@ -124,6 +125,7 @@ public class PruebaCruce {
 					indice1 = i;
 				}
 			}
+			//indice1 = padre1.getDescendientes().indexOf(n1);
 			for (int i = 0; i < padre2.getDescendientes().size(); i++) {
 				if (n2 == padre2.getDescendientes().get(i)) {
 					indice2 = i;
