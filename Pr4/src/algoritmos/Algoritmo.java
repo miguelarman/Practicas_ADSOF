@@ -381,10 +381,10 @@ public class Algoritmo implements IAlgoritmo {
 		
 		
 		// DEBUGGING
-		for (IIndividuo i : this.poblacion) {
-			i.writeIndividuo();
-			System.out.print(i.getFitness());
-		}
+//		for (IIndividuo i : this.poblacion) {
+//			i.writeIndividuo();
+//			System.out.print(i.getFitness());
+//		}
 	}
 
 }
