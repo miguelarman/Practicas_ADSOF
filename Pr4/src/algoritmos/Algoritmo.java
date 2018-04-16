@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import excepciones.ArgsDistintosFuncionesException;
 import excepciones.ArgumentosInvalidosAlgoritmo;
 import excepciones.CruceNuloException;
+import excepciones.SimboloFuncionInvalido;
 import funciones.Funcion;
 import individuos.Individuo;
 import interfaces.*;
@@ -66,7 +67,7 @@ public class Algoritmo implements IAlgoritmo {
 		this.poblacion = new ArrayList<IIndividuo>();
 		
 		for (int i = 0; i < this.numeroIndividuos; i++) {
-			Individuo nuevo = new Individuo();
+			IIndividuo nuevo = new Individuo();
 			
 			nuevo.crearIndividuoAleatorio(this.profundidadMaximaInicial, this.conjuntoTerminales, this.conjuntoFunciones);
 			
@@ -220,12 +221,16 @@ public class Algoritmo implements IAlgoritmo {
 		
 		Double maxFitness = 0.0;
 		
+		for (IIndividuo i : this.poblacion) {
+			this.dominio.calcularFitness(i);
+		}
+		
 		// Calculamos el fitness maximo
 		this.poblacion.sort(comparator);
 		maxFitness = this.poblacion.get(0).getFitness();
 		
 		for (IIndividuo individuo : this.poblacion) {
-			float aleatorio = (float) ThreadLocalRandom.current().nextDouble(0, 1);;
+			float aleatorio = (float) ThreadLocalRandom.current().nextDouble(0, 1);
 			
 			// Si es el mejor no lo cruzamos
 			if (individuo.getFitness() == maxFitness) {
@@ -242,12 +247,19 @@ public class Algoritmo implements IAlgoritmo {
 		
 		// Generamos grupos de k individuos para cruzar
 		while(individuosACruzar.size() > k) {
-			List<IIndividuo> grupo = individuosACruzar.subList(0, this.k);
+			List<IIndividuo> grupo = new ArrayList<IIndividuo>();
+			
+			for (int i = 0; i < this.k; i++) {
+				int indiceAleatorio = ThreadLocalRandom.current().nextInt(0, individuosACruzar.size());
+				grupo.add(individuosACruzar.get(indiceAleatorio));
+				individuosACruzar.remove(indiceAleatorio);
+			}
 			
 			// Elimina estos elementos
-			for (int i = 0; i < grupo.size(); i++) {
-				individuosACruzar.remove(0);
-			}
+//			for (int i = 0; i < grupo.size(); i++) {
+//				individuosACruzar.remove(0);
+//			}
+//			individuosACruzar.removeAll(grupo);
 			
 			// Ordenamos el grupo segun el fitness
 			grupo.sort(comparator);
@@ -256,7 +268,7 @@ public class Algoritmo implements IAlgoritmo {
 			List<IIndividuo> nodosCruzados;
 			
 			try {
-				nodosCruzados = this.cruce(grupo.get(0), grupo.get(1));
+				nodosCruzados = this.cruce(grupo.get(0).copy(), grupo.get(1).copy());
 				// Elimino los elementos cruzados
 				grupo.remove(0); grupo.remove(1);
 				
@@ -277,6 +289,11 @@ public class Algoritmo implements IAlgoritmo {
 		// Anadimos los elementos que no hemos cruzado
 		nuevaPoblacion.addAll(individuosSinCruzar);
 		
+		// Vuelvo a calcular el fitness
+		for (IIndividuo i : nuevaPoblacion) {
+			this.dominio.calcularFitness(i);
+		}
+		
 		// Ordenamos la poblacion por fitness
 		nuevaPoblacion.sort(comparator);
 		
@@ -290,6 +307,19 @@ public class Algoritmo implements IAlgoritmo {
 		int generacion = 1;
 		this.dominio = dominio;
 		
+		this.conjuntoTerminales = dominio.definirConjuntoTerminales("x");
+		int numeros[] = {2, 2, 2};
+		String funciones[] = {"+", "-", "*"};
+		try {
+			this.conjuntoFunciones = dominio.definirConjuntoFunciones(numeros, funciones);
+		} catch (ArgsDistintosFuncionesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SimboloFuncionInvalido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.crearPoblacion();
 		for(int i= 0; i < this.poblacion.size(); i++) {
 			dominio.calcularFitness(poblacion.get(i));
@@ -300,13 +330,20 @@ public class Algoritmo implements IAlgoritmo {
 		this.poblacion.get(0).writeIndividuo(); 
 		System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
 		
-		if(this.poblacion.get(0).getFitness() == 20.0) {
+		if(this.poblacion.get(0).getFitness() == 21.0) {
 			System.out.println("El algoritmo va a acabar");
 			return;
 		}
 		
+		// DEBUGGING
+//		for (IIndividuo i : this.poblacion) {
+//			i.writeIndividuo();
+//			System.out.print(i.getFitness());
+//		}
+		
 		for (int j = 0; j < this.numeroMaximoGeneraciones; j++) {
 			n_iteraciones++;
+			generacion++;
 			this.crearNuevaPoblacion();
 			for(int i= 0; i < this.poblacion.size(); i++) {
 				dominio.calcularFitness(poblacion.get(i));
@@ -322,6 +359,13 @@ public class Algoritmo implements IAlgoritmo {
 				System.out.println("El algoritmo va a acabar porque se ha encontrado una solución óptima");
 				return;
 			}
+			
+			
+			// DEBUGGING
+//			for (IIndividuo i : this.poblacion) {
+//				i.writeIndividuo();
+//				System.out.print(i.getFitness());
+//			}
 
 		}
 	}

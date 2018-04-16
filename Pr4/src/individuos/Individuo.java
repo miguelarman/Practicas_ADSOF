@@ -41,6 +41,8 @@ public class Individuo implements IIndividuo {
 	}
 	@Override
 	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Funcion> funciones) {
+		this.etiquetas = new HashMap<Integer, INodo>();
+		
 		if(profundidad == 0) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, terminales.size());
 			expresion = terminales.get(randomNum).copy();
@@ -92,5 +94,10 @@ public class Individuo implements IIndividuo {
 		nuevo.getExpresion().actualizarPadres();
 		
 		return nuevo;
+	}
+	
+	@Override
+	public String toString() {
+		return "" + this.getExpresion();
 	}
 }
