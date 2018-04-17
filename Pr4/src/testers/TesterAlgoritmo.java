@@ -1,4 +1,4 @@
-package otros;
+package testers;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import dominios.DominioAritmetico;
 import excepciones.ArgumentosInvalidosAlgoritmo;
 import interfaces.IDominio;
 
-public class TesterSwap {
+public class TesterAlgoritmo {
 
 	public static void main(String[] args) {
 
