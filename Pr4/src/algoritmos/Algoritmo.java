@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import excepciones.ArgsDistintosFuncionesException;
@@ -20,7 +19,6 @@ import terminales.Terminal;
 public class Algoritmo implements IAlgoritmo {
 	
 	private List<IIndividuo> poblacion;
-	private int n_iteraciones = 0;
 	private List<Terminal> conjuntoTerminales;
 	private List<Funcion> conjuntoFunciones;
 	private int profundidadMaximaInicial;
@@ -345,7 +343,6 @@ public class Algoritmo implements IAlgoritmo {
 //		}
 		
 		for (int j = 0; j < this.numeroMaximoGeneraciones; j++) {
-			n_iteraciones++;
 			generacion++;
 			this.crearNuevaPoblacion();
 			for(int i= 0; i < this.poblacion.size(); i++) {
