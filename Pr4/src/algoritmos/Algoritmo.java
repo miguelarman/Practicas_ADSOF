@@ -271,8 +271,8 @@ public class Algoritmo implements IAlgoritmo {
 			
 			try {
 				nodosCruzados = this.cruce(grupo.get(0).copy(), grupo.get(1).copy());
-				// Elimino los elementos cruzados
-				grupo.remove(0); grupo.remove(1);
+				// Elimino los dos peores
+				grupo.remove(grupo.size()- 1); grupo.remove(grupo.size()-1);
 				
 				// Calculo el nuevo fitness
 				this.dominio.calcularFitness(nodosCruzados.get(0));
@@ -353,12 +353,12 @@ public class Algoritmo implements IAlgoritmo {
 			}
 			this.poblacion.sort(comparator);
 			
-			 if (generacion % 50 == 0) {
+			 //if (generacion % 50 == 0) {
 				System.out.println();
 				System.out.println("Generacion: " + generacion + "\nMejor Individuo: ");
 				this.poblacion.get(0).writeIndividuo(); 
 				System.out.println("\nFitness: " + this.poblacion.get(0).getFitness());
-			 }
+			// }
 			
 			if(this.poblacion.get(0).getFitness() >= 21.0) {
 				System.out.println("El algoritmo va a acabar porque se ha encontrado una solución óptima");
