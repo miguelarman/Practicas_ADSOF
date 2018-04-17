@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import interfaces.IIndividuo;
 
+
+
 public class OrganizadorPorFitness implements Comparator<IIndividuo> {
 
 	@Override
