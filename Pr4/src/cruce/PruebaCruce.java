@@ -9,8 +9,23 @@ import excepciones.CruceNuloException;
 import interfaces.IIndividuo;
 import interfaces.INodo;
 
+/**
+ * Clase utilizada para probar el cruce de individuos
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class PruebaCruce {
 
+	/**
+	 * Metodo que cruza dos individuos de forma aleatoria
+	 * 
+	 * @param prog1 Primer individuo a cruzar
+	 * @param prog2 Segundo individuo a cruzar 
+	 * 
+	 * @throws CruceNuloException Cuando se intenta cruzar la raiz de ambos individuos
+	 * 
+	 * @return Individuos generados por el cruce
+	 */
 	public List<IIndividuo> cruce(IIndividuo prog1, IIndividuo prog2) throws CruceNuloException {
 		int randomNum1 = ThreadLocalRandom.current().nextInt(0, prog1.getNumeroNodos());
 		int randomNum2 = ThreadLocalRandom.current().nextInt(0, prog2.getNumeroNodos());

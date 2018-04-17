@@ -1,7 +1,6 @@
 package testers;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 import algoritmos.Algoritmo;
 import dominios.DominioAritmetico;

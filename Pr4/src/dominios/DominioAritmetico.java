@@ -10,9 +10,23 @@ import interfaces.*;
 import terminales.Terminal;
 import terminales.TerminalAritmetico;
 
+/**
+ * Clase que implementa IDominio para datos aritmeticos
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class DominioAritmetico implements IDominio {
 	
+	/**
+	 * Margen de error para el fitness. Si la diferencia en valor absoluto es menor
+	 * se cuenta como valido
+	 */
 	private static double margen = 1.0;
+	
+	/**
+	 * HashMap en el que se almacenan los valores deseados de la funcion, representa
+	 * duplas de puntos en la funcion bidimensional
+	 */
 	private HashMap<Integer, Integer> valoresPrueba;
 
 	@Override
@@ -99,6 +113,11 @@ public class DominioAritmetico implements IDominio {
 		return fitness;
 	}
 
+	/**
+	 * Metodo setter para el campo margen del dominio
+	 * 
+	 * @param margen Nuevo margen
+	 */
 	public static void setMargen(double margen) {
 		DominioAritmetico.margen = margen;
 	}

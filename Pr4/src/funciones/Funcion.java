@@ -1,20 +1,46 @@
 package funciones;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import interfaces.INodo;
 import terminales.Terminal;
 
+/**
+ * Clase que implementa los nodos que no son hojas, que tienen descendientes,
+ * por lo que sus valores dependen de los valores de sus hijos y de una funcion
+ * aritmetica
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public abstract class Funcion implements INodo, Cloneable {
 	
+	/**
+	 * Raiz de la funcion. Simboliza el simbolo de la operacion (*, +, -), usado al imprimirlo
+	 */
 	private String raiz;
+	
+	/**
+	 * Lista de descendientes de la funcion
+	 */
 	private List<INodo> descendientes;
+	
+	/**
+	 * Numero maximo de descendientes que puede manejar la funcion
+	 */
 	protected Integer maximosDescendientes;
+	
+	/**
+	 * Nodo padre de este nodo funcion
+	 */
 	private INodo padre;
 	
+	/**
+	 * Constructor de la clase Funcion
+	 * 
+	 * @param raiz Simbolo que representa la funcion
+	 * @param maximosDescendientes Numero maximo de descendientes del nodo
+	 */
 	public Funcion(String raiz, Integer maximosDescendientes) {
 		this.raiz = raiz;
 		this.descendientes = new ArrayList<INodo>();

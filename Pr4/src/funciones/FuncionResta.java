@@ -2,8 +2,19 @@ package funciones;
 
 import interfaces.INodo;
 
+/**
+ * Clase que implementa la funcion aritmetica <b>resta</b>
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class FuncionResta extends Funcion {
 
+	/**
+	 * Metodo constructor de la clase FuncionResta
+	 * 
+	 * @param raiz Simbolo del nodo
+	 * @param i Numero maximo de descendientes
+	 */
 	public FuncionResta(String raiz, int i) {
 		super(raiz, i);
 	}

@@ -1,34 +1,84 @@
 package algoritmos;
 
 import java.util.ArrayList;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.*;
 
-import excepciones.ArgsDistintosFuncionesException;
-import excepciones.ArgumentosInvalidosAlgoritmo;
-import excepciones.CruceNuloException;
-import excepciones.SimboloFuncionInvalido;
+import excepciones.*;
 import funciones.Funcion;
 import individuos.Individuo;
 import interfaces.*;
 import terminales.Terminal;
 
+/**
+ * Clase que implementa la interfaz IAlgoritmo, y con la que generamos los individuos para aplicar el algoritmo genetico
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class Algoritmo implements IAlgoritmo {
 	
+	/**
+	 * Poblacion de individuos en la que ejecutar el algoritmo genetico
+	 */
 	private List<IIndividuo> poblacion;
+	
+	/**
+	 * Conjunto de terminales especificados por el dominio
+	 */
 	private List<Terminal> conjuntoTerminales;
+	
+	/**
+	 * Conjunto de funciones especificado por el dominio
+	 */
 	private List<Funcion> conjuntoFunciones;
+	
+	/**
+	 * Profundidad deseada de los individuos iniciales
+	 */
 	private int profundidadMaximaInicial;
+	
+	/**
+	 * Numero de individuos deseados en la poblacion
+	 */
 	private int numeroIndividuos;
+	
+	/**
+	 * Probabilidad de que un nodo sea seleccionado para entrar en el grupo de
+	 * cruces en la ejecucion del algoritmo
+	 */
 	private double probabilidadCruce;
+	
+	/**
+	 * Tope maximo de generaciones a iterar si no se encuentra un individuo optimo antes
+	 */
 	private int numeroMaximoGeneraciones;
+	
+	/**
+	 * Tamano de los grupos de torneo del algoritmo
+	 */
 	private int k;
+	
+	/**
+	 * Dominio con el que se calcula el fitness de los individuos
+	 */
 	private IDominio dominio;
+	
+	/**
+	 * Comparator utilizado para ordenar la poblacion de mejor a peor fitness
+	 */
 	Comparator<IIndividuo> comparator = new OrganizadorPorFitness();
 	
+	/**
+	 * Constructor de la clase Algoritmo. Con los argumentos se personaliza el algoritmo
+	 * 
+	 * @param profundidadMaximaInicial Profundidad deseada de los nodos iniciales
+	 * @param numeroIndividuos Numero de individuos que se desea tener en la poblacion
+	 * @param probabilidadCruce Probabilidad de que un nodo sea seleccionado para los torneos
+	 * @param numeroMaximoGeneraciones Tope de iteraciones del algoritmo
+	 * @param k Tamano de los grupos de torneo
+	 * 
+	 * @throws ArgumentosInvalidosAlgoritmo Cuando algun argumento es invalido (tamanos menores que 0...)
+	 */
 	public Algoritmo(int profundidadMaximaInicial, int numeroIndividuos, double probabilidadCruce,
 			int numeroMaximoGeneraciones, int k) throws ArgumentosInvalidosAlgoritmo {
 		if (profundidadMaximaInicial <= 0) {

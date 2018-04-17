@@ -9,10 +9,28 @@ import interfaces.IIndividuo;
 import interfaces.INodo;
 import terminales.Terminal;
 
+/**
+ * Clase que implementa la interfaz individuo. Basicamente implementa todos los
+ * metodos de la interfaz IIndividuo de forma especifica
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class Individuo implements IIndividuo {
 	
+	/**
+	 * Nodo raiz del individuo. De el se desprenden todos los nodos
+	 */
 	private INodo expresion;
+	
+	/**
+	 * Campo en el que se guarda el fitness del individuo
+	 */
 	private double fitness;
+	
+	/**
+	 * HashMap donde se guardan, de forma biyectiva, la relacion entre etiquetas y
+	 * nodos
+	 */
 	private HashMap<Integer, INodo> etiquetas;
 
 	@Override
@@ -39,6 +57,7 @@ public class Individuo implements IIndividuo {
 	public HashMap<Integer, INodo> getEtiquetas(){
 		return this.etiquetas;
 	}
+	
 	@Override
 	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Funcion> funciones) {
 		this.etiquetas = new HashMap<Integer, INodo>();

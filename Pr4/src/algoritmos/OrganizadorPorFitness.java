@@ -4,8 +4,13 @@ import java.util.Comparator;
 
 import interfaces.IIndividuo;
 
-
-
+/**
+ * Clase privada que implementa Comparator utilizada para ordenar la poblacion
+ * del algoritmo de mejor a peor fitness. En caso de empate favorece a los
+ * individuos con menos nodos (asi la ejecucion es mas rapida y converge mejor)
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class OrganizadorPorFitness implements Comparator<IIndividuo> {
 
 	@Override

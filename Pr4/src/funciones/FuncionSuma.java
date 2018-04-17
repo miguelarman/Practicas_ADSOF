@@ -2,8 +2,19 @@ package funciones;
 
 import interfaces.INodo;
 
+/**
+ * Clase que implementa la funcion aritmetica <b>suma</b>
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class FuncionSuma extends Funcion {
 
+	/**
+	 * Constructor de la clase FuncionSuma
+	 * 
+	 * @param raiz Simbolo de la funcion
+	 * @param i Numero maximo de descendientes
+	 */
 	public FuncionSuma(String raiz, int i) {
 		super(raiz, i);
 	}

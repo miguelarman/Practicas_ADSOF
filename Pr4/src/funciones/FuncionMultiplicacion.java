@@ -4,8 +4,19 @@ import java.util.List;
 
 import interfaces.INodo;
 
+/**
+ * Clase que implementa la funcion aritmetica <b>multiplicacion</b>
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public class FuncionMultiplicacion extends Funcion {
 
+	/**
+	 * Constructor de la clase FuncionMultiplicacion
+	 * 
+	 * @param raiz Raiz del nodo
+	 * @param i Numero maximo de descendientes
+	 */
 	public FuncionMultiplicacion(String raiz, int i) {
 		super(raiz, i);
 	}

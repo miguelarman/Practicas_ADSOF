@@ -7,11 +7,29 @@ import java.util.List;
 import funciones.Funcion;
 import interfaces.INodo;
 
+/**
+ * Clase que implementa los nodos de tipo hoja, es decir, que no tienen descendientes
+ * 
+ * @author Miguel Arconada (miguel.arconada@estudiante.uam.es) Alberto Gonzalez (alberto.gonzalezk@estudiante.uam.es)
+ */
 public abstract class Terminal implements INodo {
 	
+	/**
+	 * Simbolo con el que representar este tipo de terminales al imprimir un
+	 * individuo
+	 */
 	private static String raiz;
+	
+	/**
+	 * Padre del nodo
+	 */
 	private INodo padre;
 	
+	/**
+	 * Constructor de la clase Terminal
+	 * 
+	 * @param raiz Simbolo del terminal
+	 */
 	public Terminal(String raiz) {
 		Terminal.raiz = raiz;
 	}
