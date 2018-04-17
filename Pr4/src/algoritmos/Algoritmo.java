@@ -107,9 +107,6 @@ public class Algoritmo implements IAlgoritmo {
 	@Override
 	public void defineConjuntoFunciones(List<Funcion> funciones) throws ArgsDistintosFuncionesException {
 		this.conjuntoFunciones = funciones;
-		
-		
-		// TODO por qué esta funcion lanza esa excepcion cuando es un setter?
 	}
 
 	@Override
