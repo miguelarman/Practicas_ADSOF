@@ -13,14 +13,30 @@ public abstract class Grafo<T> {
 	}
 
 	public Vertice<T> addVertice(T datos) {
-		// TODO
+		Vertice<T> vertice = new Vertice<T>(datos);
+		
+		int id = numVertices;
+		
+		while(this.vertices.containsKey(id)) {
+			id++;
+		}
+		this.vertices.put(id, vertice);
+		
 		numVertices++;
-		return null;
+		
+		return vertice;
 	}
 
 	protected Vertice<T> addVertice(int id, T datos) {
-		// TODO
-		return null;
+		Vertice<T> vertice = new Vertice<T>(datos);
+		
+		if (this.vertices.containsKey(id)) {
+			// TODO
+		} else {
+			this.vertices.put(id, vertice);
+		}
+		
+		return vertice;
 	}
 
 	public List<Vertice<T>> getVertices() {
