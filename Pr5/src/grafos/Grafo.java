@@ -1,14 +1,20 @@
 package grafos;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class Grafo<T> {
 	protected Map<Integer, Vertice<T>> vertices;
+	private int numVertices = 0;
+
+	public Grafo() {
+		this.vertices = new HashMap<Integer, Vertice<T>>();
+	}
 
 	public Vertice<T> addVertice(T datos) {
 		// TODO
-
+		numVertices++;
 		return null;
 	}
 
@@ -23,8 +29,7 @@ public abstract class Grafo<T> {
 	}
 
 	public int getNumVertices() {
-
-		return -1;
+		return numVertices;
 	}
 
 	public abstract void addArco(Vertice<T> v1, Vertice<T> v2, double peso);
