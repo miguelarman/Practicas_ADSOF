@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import aristas.Arista;
+import aristas.AristaNoDirigida;
+
 public class GrafoNoDirigido<T> extends Grafo<T> {
 
 	@Override

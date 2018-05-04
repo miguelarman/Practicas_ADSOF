@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import aristas.Arista;
+import aristas.AristaDirigida;
+
 public class GrafoDirigido<T> extends Grafo<T> {
 
 	@Override

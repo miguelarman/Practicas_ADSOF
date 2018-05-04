@@ -1,4 +1,6 @@
-package grafos;
+package aristas;
+
+import grafos.Vertice;
 
 public class AristaNoDirigida<T> extends Arista<T> {
 

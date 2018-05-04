@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import aristas.Arista;
+
 public abstract class Grafo<T> {
 	protected Map<Integer, Vertice<T>> vertices;
 	protected Map<Integer, Arista<T>> aristas;
@@ -17,6 +19,8 @@ public abstract class Grafo<T> {
 
 	public Vertice<T> addVertice(T datos) {
 		Vertice<T> vertice = new Vertice<T>(datos);
+		
+		// TODO comprobar si ya está
 
 		int id = numVertices + 1;
 
@@ -33,6 +37,8 @@ public abstract class Grafo<T> {
 	protected Vertice<T> addVertice(int id, T datos) {
 		Vertice<T> vertice = new Vertice<T>(datos);
 
+		// TODO comprobar si ya está
+		
 		if (this.vertices.containsKey(id)) {
 			// TODO
 		} else {
@@ -50,6 +56,7 @@ public abstract class Grafo<T> {
 		return numVertices;
 	}
 
+	// TODO si ya existe sumar el peso????
 	public abstract void addArco(Vertice<T> v1, Vertice<T> v2, double peso);
 
 	public boolean existeArco(Vertice<T> v1, Vertice<T> v2) {
