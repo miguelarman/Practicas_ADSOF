@@ -4,8 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 
@@ -41,18 +46,32 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	}
 
 	public Vertice<PersonajeGOT> getVertice(String nombre) {
-		// TODO
-		return null;
+		Optional<Vertice<PersonajeGOT>> resultado = this.vertices.values().stream().filter(v -> v.getDatos().toString().equals(nombre)).findFirst();
+		
+		return resultado.orElse(null);
 	}
 
 	public List<String> casas() {
-		// TODO
-		return null;
+		Set<String> conjunto = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).map(PersonajeGOT::getCasa).filter(nombre -> nombre != null).collect(Collectors.toSet());
+		
+		List<String> lista = new ArrayList<String>();
+		lista.addAll(conjunto);
+		
+		lista.sort(null);
+		return lista;
 	}
 
 	public List<String> miembrosCasa(String casa) {
-		// TODO
-		return null;
+		
+//		Predicate<PersonajeGOT> esMiembro = p -> p.getCasa().equals(casa);
+//		return this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).filter(esMiembro).map(PersonajeGOT::getNombre).collect(Collectors.toList());
+		
+		return this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).filter(new Predicate<PersonajeGOT>() {
+			@Override
+			public boolean test (PersonajeGOT p) {
+				return p.getCasa().equals(casa);
+			}
+		}).map(PersonajeGOT::getNombre).collect(Collectors.toList());
 	}
 
 	public Map<String, Integer> gradoPersonajes() {
