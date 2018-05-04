@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -118,9 +119,28 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 		return mapa;
 	}
 
-	public Map<String, Integer> personajesRelevantes() { // No lambda
-		// TODO
-		return null;
+	public Map<String, Integer> personajesRelevantes() {
+		Map<String, Integer> mapaGeneral = this.gradoPonderadoPersonajes();
+		Map<String, Integer> mapaFinal = new HashMap<>();
+		Double avg = mapaGeneral.values().stream().mapToInt(Integer::intValue).average().orElse(0);
+		
+//		mapaGeneral.entrySet().stream().filter(new Predicate<Entry<String, Integer>>(){
+//			@Override
+//			public boolean test(Entry<String, Integer> e) {
+//				return e.getValue() > avg;
+//			}
+//		}).forEach(entry -> {
+//			mapaFinal.put(entry.getKey(), entry.getValue());
+//		});
+//		
+//		return mapaFinal;
+		
+		return mapaGeneral.entrySet().stream().filter(new Predicate<Entry<String, Integer>>(){
+			@Override
+			public boolean test(Entry<String, Integer> e) {
+				return e.getValue() > avg;
+			}
+		}).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	public static void main(String... strings) {
