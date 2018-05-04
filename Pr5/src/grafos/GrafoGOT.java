@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -75,13 +76,46 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	}
 
 	public Map<String, Integer> gradoPersonajes() {
-		// TODO
-		return null;
+		List<String> nombres = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).map(PersonajeGOT::getNombre).collect(Collectors.toList());
+		
+		List<Integer> grados = new ArrayList<>();
+		
+		this.vertices.values().stream().forEach(v -> {
+			grados.add(this.getVecinosDe(v).size());
+		});
+		
+		HashMap<String, Integer> mapa = new HashMap<>();
+		for (int i = 0; i < nombres.size(); i++) {
+			mapa.put(nombres.get(i), grados.get(i));
+		}
+		
+		return mapa;
 	}
 
 	public Map<String, Integer> gradoPonderadoPersonajes() {
-		// TODO
-		return null;
+		List<String> nombres = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).map(PersonajeGOT::getNombre).collect(Collectors.toList());
+		
+		List<Integer> pesos = new ArrayList<>();
+
+		this.vertices.values().stream().forEach(v -> {
+			List<Vertice<PersonajeGOT>> vecinos = this.getVecinosDe(v);
+	
+			List<Double> listaPesosVecinos = new ArrayList<>();
+			vecinos.stream().forEach(ve -> {
+				listaPesosVecinos.add(this.getPesoDe(v, ve));
+			});
+			
+			Double suma = listaPesosVecinos.stream().reduce(0.0, Double::sum);
+			
+			pesos.add(suma.intValue());
+		});
+		
+		HashMap<String, Integer> mapa = new HashMap<>();
+		for (int i = 0; i < nombres.size(); i++) {
+			mapa.put(nombres.get(i), pesos.get(i));
+		}
+		
+		return mapa;
 	}
 
 	public Map<String, Integer> personajesRelevantes() { // No lambda
