@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 
@@ -51,7 +52,6 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	}
 
 	public List<String> miembrosCasa(String casa) {
-		// TODO
 		return null;
 	}
 
