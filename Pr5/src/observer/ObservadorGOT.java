@@ -17,6 +17,7 @@ public class ObservadorGOT extends Observador {
 	public ObservadorGOT(SimuladorGOT s, PersonajeGOT p) {
 		super(s);
 		
+		// TODO Borrar esto porque ya se consigue en la super
 		this.simulador = s;
 		this.personaje = p;
 		
@@ -52,8 +53,8 @@ public class ObservadorGOT extends Observador {
 		Integer interaccionesInternas = this.interacciones.get(this.personaje.getCasa());
 		
 		string += "\n\tInteracciones: " + interaccionesTotales;
-		string += "\n\tCon miembros de su casa: " + interaccionesInternas;
-		string += "\n\tCon miembros de casa ajena:";
+		string += "\n\t\tCon miembros de su casa: " + interaccionesInternas;
+		string += "\n\t\tCon miembros de casa ajena:";
 		
 		string += this.interacciones.entrySet().stream().filter(new Predicate<Entry<String, Integer>>() {
 			@Override
@@ -72,9 +73,9 @@ public class ObservadorGOT extends Observador {
 			@Override
 			public String apply(Entry<String, Integer> e) {
 				if (e.getKey() == null) {
-					return "\n\t\tSin casa: " + e.getValue();
+					return "\n\t\t\tSin casa: " + e.getValue();
 				} else {
-					return "\n\t\t" + e.getKey() + ": " + e.getValue();
+					return "\n\t\t\t" + e.getKey() + ": " + e.getValue();
 				}
 			}
 			

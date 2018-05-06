@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import aristas.Arista;
-import interfaces.IGrafo;
 
 public abstract class Grafo<T> implements IGrafo<T>{
 	protected Map<Integer, Vertice<T>> vertices;
