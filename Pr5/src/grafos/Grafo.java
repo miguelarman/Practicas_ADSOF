@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import aristas.Arista;
+import interfaces.IGrafo;
 
-public abstract class Grafo<T> {
+public abstract class Grafo<T> implements IGrafo<T>{
 	protected Map<Integer, Vertice<T>> vertices;
 	protected Map<Integer, Arista<T>> aristas;
-	private int numVertices = 0;
+	protected int numVertices = 0;
 	protected int numAristas = 0;
 
 	public Grafo() {
@@ -34,13 +35,11 @@ public abstract class Grafo<T> {
 		return vertice;
 	}
 
-	protected Vertice<T> addVertice(int id, T datos) {
+	public Vertice<T> addVertice(int id, T datos) {
 		Vertice<T> vertice = new Vertice<T>(datos);
-
-		// TODO comprobar si ya está
 		
 		if (this.vertices.containsKey(id)) {
-			// TODO
+			throw new IllegalArgumentException();
 		} else {
 			this.vertices.put(id, vertice);
 		}
@@ -55,8 +54,7 @@ public abstract class Grafo<T> {
 	public int getNumVertices() {
 		return numVertices;
 	}
-
-	// TODO si ya existe sumar el peso????
+	
 	public abstract void addArco(Vertice<T> v1, Vertice<T> v2, double peso);
 
 	public boolean existeArco(Vertice<T> v1, Vertice<T> v2) {
