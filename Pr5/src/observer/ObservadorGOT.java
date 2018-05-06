@@ -10,15 +10,12 @@ import java.util.stream.Collectors;
 import grafos.PersonajeGOT;
 
 public class ObservadorGOT extends Observador {
-	private SimuladorGOT simulador;
 	private PersonajeGOT personaje;
 	private HashMap<String, Integer> interacciones;
 
 	public ObservadorGOT(SimuladorGOT s, PersonajeGOT p) {
 		super(s);
 		
-		// TODO Borrar esto porque ya se consigue en la super
-		this.simulador = s;
 		this.personaje = p;
 		
 		s.addObservador(this);
