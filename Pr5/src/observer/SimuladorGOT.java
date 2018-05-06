@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import grafos.GrafoGOT;
 import grafos.PersonajeGOT;
@@ -67,11 +68,14 @@ public class SimuladorGOT extends Sujeto {
 		new ObservadorGOT(simulador, g.getVertice("Daenerys Targaryen").getDatos());
 //		simulador.addObservador(observador);
 		
-		List<String> casas = g.casas();
-		List<String> nombresPersonajes = new ArrayList<String>(); // Lista de personajes
-		casas.stream().forEach(c -> {
-			nombresPersonajes.addAll(g.miembrosCasa(c));
-		});		
+//		List<String> casas = g.casas();
+//		List<String> nombresPersonajes = new ArrayList<String>(); // Lista de personajes
+//		casas.stream().forEach(c -> {
+//			nombresPersonajes.addAll(g.miembrosCasa(c));
+//		});
+		
+		List<String> nombresPersonajes = g.getVertices().stream().map(Vertice<PersonajeGOT>::getDatos)
+				.map(PersonajeGOT::getNombre).collect(Collectors.toList());
 		
 		Random rand = new Random();
 		for (int n = 0; n < N; n++) {
