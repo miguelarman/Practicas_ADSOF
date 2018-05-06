@@ -35,6 +35,7 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 		// Leemos los arcos
 		
 		reader = new BufferedReader(new InputStreamReader(new FileInputStream(ficheroArcos)));
+
 		String lineaArcos;
 		String[] valoresArcos = new String[3];
 
@@ -67,6 +68,7 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	}
 
 	public List<String> miembrosCasa(String casa) {
+
 		
 //		Predicate<PersonajeGOT> esMiembro = p -> p.getCasa().equals(casa);
 //		return this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).filter(esMiembro).map(PersonajeGOT::getNombre).collect(Collectors.toList());
