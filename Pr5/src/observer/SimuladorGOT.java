@@ -64,16 +64,14 @@ public class SimuladorGOT extends Sujeto {
 		
 		SimuladorGOT simulador = new SimuladorGOT(g);
 		new ObservadorGOT(simulador, g.getVertice("Jon Snow").getDatos());
+		new ObservadorGOT(simulador, g.getVertice("Daenerys Targaryen").getDatos());
 //		simulador.addObservador(observador);
 		
 		List<String> casas = g.casas();
 		List<String> nombresPersonajes = new ArrayList<String>(); // Lista de personajes
 		casas.stream().forEach(c -> {
 			nombresPersonajes.addAll(g.miembrosCasa(c));
-		});
-		
-		int snow = 0;
-		
+		});		
 		
 		Random rand = new Random();
 		for (int n = 0; n < N; n++) {
@@ -84,16 +82,9 @@ public class SimuladorGOT extends Sujeto {
 			if (n % 500 == 0) {
 				System.out.println("" + n + " iteraciones completadas");
 			}
-			
-			if (nombre.equals("Jon Snow")) {
-				snow++;
-			}
 		}
 		
 		System.out.println(simulador);
 		
-		
-		
-		System.out.println(snow);
 	}
 }
