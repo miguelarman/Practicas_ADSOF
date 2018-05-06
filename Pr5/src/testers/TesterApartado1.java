@@ -3,7 +3,6 @@ package testers;
 import java.util.List;
 
 import grafos.Grafo;
-import grafos.GrafoDirigido;
 import grafos.GrafoNoDirigido;
 import grafos.Vertice;
 

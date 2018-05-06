@@ -30,6 +30,7 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 			this.addVertice(Integer.parseInt(valores[0]), new PersonajeGOT(valores[1], valores[2]));
 		}
 		
+		reader.close();
 		
 		// Leemos los arcos
 		
@@ -37,14 +38,16 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 		String lineaArcos;
 		String[] valoresArcos = new String[3];
 
-		while ((linea = reader.readLine()) != null) {
-			valores = linea.split(",");
+		while ((lineaArcos = reader.readLine()) != null) {
+			valoresArcos = lineaArcos.split(",");
 			
-			Vertice<PersonajeGOT> v1 = (Vertice<PersonajeGOT>)this.vertices.get(Integer.parseInt(valores[0]));
-			Vertice<PersonajeGOT> v2 = (Vertice<PersonajeGOT>)this.vertices.get(Integer.parseInt(valores[1]));
+			Vertice<PersonajeGOT> v1 = (Vertice<PersonajeGOT>)this.vertices.get(Integer.parseInt(valoresArcos[0]));
+			Vertice<PersonajeGOT> v2 = (Vertice<PersonajeGOT>)this.vertices.get(Integer.parseInt(valoresArcos[1]));
 
-			this.addArco(v1, v2, Double.parseDouble(valores[2]));
+			this.addArco(v1, v2, Double.parseDouble(valoresArcos[2]));
 		}
+		
+		reader.close();
 	}
 
 	public Vertice<PersonajeGOT> getVertice(String nombre) {
@@ -121,9 +124,9 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 
 	public Map<String, Integer> personajesRelevantes() {
 		Map<String, Integer> mapaGeneral = this.gradoPonderadoPersonajes();
-		Map<String, Integer> mapaFinal = new HashMap<>();
 		Double avg = mapaGeneral.values().stream().mapToInt(Integer::intValue).average().orElse(0);
 		
+//		Map<String, Integer> mapaFinal = new HashMap<>();
 //		mapaGeneral.entrySet().stream().filter(new Predicate<Entry<String, Integer>>(){
 //			@Override
 //			public boolean test(Entry<String, Integer> e) {
