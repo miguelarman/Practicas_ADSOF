@@ -56,7 +56,7 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	}
 
 	public Vertice<PersonajeGOT> getVertice(String nombre) {
-		Optional<Vertice<PersonajeGOT>> resultado = this.vertices.values().stream().filter(v -> v.getDatos().toString().equals(nombre)).findFirst();
+		Optional<Vertice<PersonajeGOT>> resultado = this.vertices.values().stream().filter(v -> v.getDatos().getNombre().equals(nombre)).findFirst();
 		
 		return resultado.orElse(null);
 	}

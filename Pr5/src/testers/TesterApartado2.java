@@ -13,7 +13,7 @@ public class TesterApartado2 {
 		List<String> casas = grafo.casas();
 		System.out.println(casas);
 		
-		List<String> miembrosCasa = grafo.miembrosCasa("Targaryen");
+		List<String> miembrosCasa = grafo.miembrosCasa("Stark");
 		System.out.println(miembrosCasa);
 		
 		Map<String, Integer> gradoPersonajes = grafo.gradoPersonajes();

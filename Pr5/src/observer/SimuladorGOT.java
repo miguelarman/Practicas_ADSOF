@@ -14,8 +14,10 @@ public class SimuladorGOT extends Sujeto {
 	private GrafoGOT grafo;
 	private PersonajeGOT origen;
 	private List<PersonajeGOT> destinos;
+	private static int N = 10000;
 
 	public SimuladorGOT(GrafoGOT g) {
+		super();
 		this.grafo = g;
 	}
 
@@ -49,23 +51,20 @@ public class SimuladorGOT extends Sujeto {
 			super.notificar();
 		}
 	}
-	
-	@Override
-	public String toString() {
-		// TODO
-		return null;
-	}
 
 	public static void main(String...strings) {
-		int N = 10000;
 		GrafoGOT g;
+		
 		try {
 			g = new GrafoGOT("got-s01-vertices.csv", "got-s01-arcos.csv");
 		} catch (IOException e) {
 			System.err.println("Error with input files");
 			return;
 		}
+		
 		SimuladorGOT simulador = new SimuladorGOT(g);
+		new ObservadorGOT(simulador, g.getVertice("Jon Snow").getDatos());
+//		simulador.addObservador(observador);
 		
 		List<String> casas = g.casas();
 		List<String> nombresPersonajes = new ArrayList<String>(); // Lista de personajes
@@ -73,13 +72,28 @@ public class SimuladorGOT extends Sujeto {
 			nombresPersonajes.addAll(g.miembrosCasa(c));
 		});
 		
+		int snow = 0;
+		
+		
 		Random rand = new Random();
 		for (int n = 0; n < N; n++) {
 			int indiceAleatorio = rand.nextInt(nombresPersonajes.size());
 			String nombre = nombresPersonajes.get(indiceAleatorio); // Se elige un personaje de forma aleatoria
-			simulador.interaccion(nombre);	
+			simulador.interaccion(nombre);
+			
+			if (n % 500 == 0) {
+				System.out.println("" + n + " iteraciones completadas");
+			}
+			
+			if (nombre.equals("Jon Snow")) {
+				snow++;
+			}
 		}
 		
 		System.out.println(simulador);
+		
+		
+		
+		System.out.println(snow);
 	}
 }

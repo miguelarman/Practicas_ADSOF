@@ -1,10 +1,15 @@
 package observer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Sujeto {
 	
 	List<Observador> observadores;
+	
+	public Sujeto() {
+		this.observadores = new ArrayList<Observador>();
+	}
 	
 	public void addObservador(Observador o) {
 		this.observadores.add(o);
