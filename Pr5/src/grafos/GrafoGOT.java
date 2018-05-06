@@ -4,9 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 
@@ -28,9 +34,6 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 		// Leemos los arcos
 		
 		reader = new BufferedReader(new InputStreamReader(new FileInputStream(ficheroArcos)));
-		String lineaArcos;
-		String[] valoresArcos = new String[3];
-
 		while ((linea = reader.readLine()) != null) {
 			valores = linea.split(",");
 			
@@ -42,32 +45,100 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	}
 
 	public Vertice<PersonajeGOT> getVertice(String nombre) {
-		// TODO
-		return null;
+		Optional<Vertice<PersonajeGOT>> resultado = this.vertices.values().stream().filter(v -> v.getDatos().toString().equals(nombre)).findFirst();
+		
+		return resultado.orElse(null);
 	}
 
 	public List<String> casas() {
-		// TODO
-		return null;
+		Set<String> conjunto = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).map(PersonajeGOT::getCasa).filter(nombre -> nombre != null).collect(Collectors.toSet());
+		
+		List<String> lista = new ArrayList<String>();
+		lista.addAll(conjunto);
+		
+		lista.sort(null);
+		return lista;
 	}
 
 	public List<String> miembrosCasa(String casa) {
-		return null;
+
+		
+//		Predicate<PersonajeGOT> esMiembro = p -> p.getCasa().equals(casa);
+//		return this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).filter(esMiembro).map(PersonajeGOT::getNombre).collect(Collectors.toList());
+		
+		return this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).filter(new Predicate<PersonajeGOT>() {
+			@Override
+			public boolean test (PersonajeGOT p) {
+				return p.getCasa().equals(casa);
+			}
+		}).map(PersonajeGOT::getNombre).collect(Collectors.toList());
 	}
 
 	public Map<String, Integer> gradoPersonajes() {
-		// TODO
-		return null;
+		List<String> nombres = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).map(PersonajeGOT::getNombre).collect(Collectors.toList());
+		
+		List<Integer> grados = new ArrayList<>();
+		
+		this.vertices.values().stream().forEach(v -> {
+			grados.add(this.getVecinosDe(v).size());
+		});
+		
+		HashMap<String, Integer> mapa = new HashMap<>();
+		for (int i = 0; i < nombres.size(); i++) {
+			mapa.put(nombres.get(i), grados.get(i));
+		}
+		
+		return mapa;
 	}
 
 	public Map<String, Integer> gradoPonderadoPersonajes() {
-		// TODO
-		return null;
+		List<String> nombres = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).map(PersonajeGOT::getNombre).collect(Collectors.toList());
+		
+		List<Integer> pesos = new ArrayList<>();
+
+		this.vertices.values().stream().forEach(v -> {
+			List<Vertice<PersonajeGOT>> vecinos = this.getVecinosDe(v);
+	
+			List<Double> listaPesosVecinos = new ArrayList<>();
+			vecinos.stream().forEach(ve -> {
+				listaPesosVecinos.add(this.getPesoDe(v, ve));
+			});
+			
+			Double suma = listaPesosVecinos.stream().reduce(0.0, Double::sum);
+			
+			pesos.add(suma.intValue());
+		});
+		
+		HashMap<String, Integer> mapa = new HashMap<>();
+		for (int i = 0; i < nombres.size(); i++) {
+			mapa.put(nombres.get(i), pesos.get(i));
+		}
+		
+		return mapa;
 	}
 
-	public Map<String, Integer> personajesRelevantes() { // No lambda
-		// TODO
-		return null;
+	public Map<String, Integer> personajesRelevantes() {
+		Map<String, Integer> mapaGeneral = this.gradoPonderadoPersonajes();
+		new HashMap<>();
+		Double avg = mapaGeneral.values().stream().mapToInt(Integer::intValue).average().orElse(0);
+		
+//		mapaGeneral.entrySet().stream().filter(new Predicate<Entry<String, Integer>>(){
+//			@Override
+//			public boolean test(Entry<String, Integer> e) {
+//				return e.getValue() > avg;
+//			}
+//		}).forEach(entry -> {
+//			mapaFinal.put(entry.getKey(), entry.getValue());
+//		});
+//		
+//		return mapaFinal;
+		
+		return mapaGeneral.entrySet().stream().filter(new Predicate<Entry<String, Integer>>(){
+			@Override
+			public boolean test(Entry<String, Integer> e) {
+				return e.getValue() > avg;
+			}
+		}).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	public static void main(String... strings) {

@@ -7,6 +7,10 @@ public class Vertice<T> {
 	public Vertice(T datos) {
 		this.datos = datos;
 	}
+	
+	public T getDatos() {
+		return this.datos;
+	}
 
 	@Override
 	public String toString() {
