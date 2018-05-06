@@ -62,8 +62,9 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	}
 
 	public List<String> casas() {
-		Set<String> conjunto = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).map(PersonajeGOT::getCasa).filter(nombre -> nombre != null).collect(Collectors.toSet());
-		
+		Set<String> conjunto = this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos)
+				.map(PersonajeGOT::getCasa).filter(nombre -> nombre != null).collect(Collectors.toSet());
+
 		List<String> lista = new ArrayList<String>();
 		lista.addAll(conjunto);
 		

@@ -3,6 +3,7 @@ package grafos;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import aristas.Arista;
 import interfaces.IGrafo;
@@ -48,7 +49,8 @@ public abstract class Grafo<T> implements IGrafo<T>{
 	}
 
 	public List<Vertice<T>> getVertices() {
-		return (List<Vertice<T>>) this.vertices.values();
+//		return (List<Vertice<T>>) this.vertices.values();
+		return this.vertices.values().stream().collect(Collectors.toList());
 	}
 
 	public int getNumVertices() {

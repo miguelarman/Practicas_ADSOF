@@ -51,6 +51,9 @@ public class ObservadorGOT extends Observador {
 		
 		Integer interaccionesTotales = this.interacciones.values().stream().reduce(0, Integer::sum);
 		Integer interaccionesInternas = this.interacciones.get(this.personaje.getCasa());
+		if (interaccionesInternas == null) {
+			interaccionesInternas = 0;
+		}
 		
 		string += "\n\tInteracciones: " + interaccionesTotales;
 		string += "\n\t\tCon miembros de su casa: " + interaccionesInternas;
