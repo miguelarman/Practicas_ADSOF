@@ -26,6 +26,10 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 
 		while ((linea = reader.readLine()) != null) {
 			valores = linea.split(",");
+			
+			if (valores[2].equals("null")) {
+				valores[2] = null;
+			}
 
 			this.addVertice(Integer.parseInt(valores[0]), new PersonajeGOT(valores[1], valores[2]));
 		}
@@ -76,7 +80,11 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 		return this.vertices.values().stream().map(Vertice<PersonajeGOT>::getDatos).filter(new Predicate<PersonajeGOT>() {
 			@Override
 			public boolean test (PersonajeGOT p) {
-				return p.getCasa().equals(casa);
+				if (p.getCasa() == null) {
+					return false;
+				} else {
+					return p.getCasa().equals(casa);
+				}
 			}
 		}).map(PersonajeGOT::getNombre).collect(Collectors.toList());
 	}
