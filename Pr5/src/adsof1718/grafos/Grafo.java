@@ -1,12 +1,11 @@
-package grafos;
+package adsof1718.grafos;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import aristas.Arista;
-import interfaces.IGrafo;
+import adsof1718.grafos.factoria.IGrafo;
 
 public abstract class Grafo<T> implements IGrafo<T>{
 	protected Map<Integer, Vertice<T>> vertices;
@@ -47,7 +46,6 @@ public abstract class Grafo<T> implements IGrafo<T>{
 	}
 
 	public List<Vertice<T>> getVertices() {
-//		return (List<Vertice<T>>) this.vertices.values();
 		return this.vertices.values().stream().collect(Collectors.toList());
 	}
 
@@ -75,7 +73,7 @@ public abstract class Grafo<T> implements IGrafo<T>{
 
 	public abstract List<Vertice<T>> getVecinosDe(Vertice<T> v);
 
-	public String toString() { // los vértices del grafo han de presentarse ORDENADOS POR IDENTIFICADOR
+	public String toString() { 
 		
 		String cadena = "";
 		

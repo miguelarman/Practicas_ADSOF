@@ -1,16 +1,12 @@
-package testers;
+package adsof1718.grafos;
 
 import java.util.List;
-
-import grafos.Grafo;
-import grafos.GrafoNoDirigido;
-import grafos.Vertice;
 
 public class TesterApartado1 {
 
 	public static void main(String[] args) {
-		Grafo<String> g = new GrafoNoDirigido<>();
-//		Grafo<String> g = new GrafoDirigido<>();
+//		Grafo<String> g = new GrafoNoDirigido<>();
+		Grafo<String> g = new GrafoDirigido<>();
 		System.out.println(g.getClass().getName() + "\n");
 		Vertice<String> v1 = g.addVertice("A");
 		Vertice<String> v2 = g.addVertice("B");

@@ -1,16 +1,13 @@
-package grafos;
+package adsof1718.grafos;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import aristas.Arista;
-import aristas.AristaDirigida;
-
-public class GrafoDirigido<T> extends Grafo<T> {
+public class GrafoNoDirigido<T> extends Grafo<T> {
 
 	@Override
 	public void addArco(Vertice<T> v1, Vertice<T> v2, double peso) {
-		AristaDirigida<T> a = new AristaDirigida<T>(v1, v2, peso);
+		AristaNoDirigida<T> a = new AristaNoDirigida<T>(v1, v2, peso);
 
 		this.numAristas++;
 
@@ -35,10 +32,10 @@ public class GrafoDirigido<T> extends Grafo<T> {
 		List<Vertice<T>> lista = new ArrayList<Vertice<T>>();
 
 		for (Arista<T> a : this.aristas.values()) {
-			AristaDirigida<T> aa = (AristaDirigida<T>) a;
+			AristaNoDirigida<T> aa = (AristaNoDirigida<T>) a;
 
-			if (aa.getOrigen().equals(v)) {
-				Vertice<T> otroVertice = aa.getDestino();
+			if (aa.contiene(v)) {
+				Vertice<T> otroVertice = aa.getOtro(v);
 				
 				if (!lista.contains(otroVertice)) {
 					lista.add(otroVertice);

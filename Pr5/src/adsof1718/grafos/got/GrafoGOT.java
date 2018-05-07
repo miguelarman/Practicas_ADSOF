@@ -1,4 +1,4 @@
-package grafos;
+package adsof1718.grafos.got;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -13,6 +13,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import adsof1718.grafos.GrafoNoDirigido;
+import adsof1718.grafos.Vertice;
 
 public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 
@@ -136,18 +139,6 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT> {
 	public Map<String, Integer> personajesRelevantes() {
 		Map<String, Integer> mapaGeneral = this.gradoPonderadoPersonajes();
 		Double avg = mapaGeneral.values().stream().mapToInt(Integer::intValue).average().orElse(0);
-		
-//		Map<String, Integer> mapaFinal = new HashMap<>();
-//		mapaGeneral.entrySet().stream().filter(new Predicate<Entry<String, Integer>>(){
-//			@Override
-//			public boolean test(Entry<String, Integer> e) {
-//				return e.getValue() > avg;
-//			}
-//		}).forEach(entry -> {
-//			mapaFinal.put(entry.getKey(), entry.getValue());
-//		});
-//		
-//		return mapaFinal;
 		
 		return mapaGeneral.entrySet().stream().filter(new Predicate<Entry<String, Integer>>(){
 			@Override

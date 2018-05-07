@@ -1,4 +1,4 @@
-package observer;
+package adsof1718.grafos.got.simulador;
 
 import java.util.ArrayList;
 import java.util.List;

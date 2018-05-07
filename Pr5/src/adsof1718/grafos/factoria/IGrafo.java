@@ -1,8 +1,8 @@
-package interfaces;
+package adsof1718.grafos.factoria;
 
 import java.util.List;
 
-import grafos.Vertice;
+import adsof1718.grafos.Vertice;
 
 public interface IGrafo<T> {
 	

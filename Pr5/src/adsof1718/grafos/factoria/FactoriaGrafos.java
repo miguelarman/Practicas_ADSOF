@@ -1,9 +1,7 @@
-package factoria;
+package adsof1718.grafos.factoria;
 
-import grafos.GrafoCompletamenteConectado;
-import grafos.GrafoDirigido;
-import grafos.GrafoNoDirigido;
-import interfaces.IGrafo;
+import adsof1718.grafos.GrafoDirigido;
+import adsof1718.grafos.GrafoNoDirigido;
 
 public class FactoriaGrafos<T> {
 	

@@ -1,4 +1,4 @@
-package observer;
+package adsof1718.grafos.got.simulador;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import grafos.GrafoGOT;
-import grafos.PersonajeGOT;
-import grafos.Vertice;
+import adsof1718.grafos.Vertice;
+import adsof1718.grafos.got.GrafoGOT;
+import adsof1718.grafos.got.PersonajeGOT;
 
 public class SimuladorGOT extends Sujeto {
 
@@ -66,13 +66,6 @@ public class SimuladorGOT extends Sujeto {
 		SimuladorGOT simulador = new SimuladorGOT(g);
 		new ObservadorGOT(simulador, g.getVertice("Jon Snow").getDatos());
 		new ObservadorGOT(simulador, g.getVertice("Daenerys Targaryen").getDatos());
-//		simulador.addObservador(observador);
-		
-//		List<String> casas = g.casas();
-//		List<String> nombresPersonajes = new ArrayList<String>(); // Lista de personajes
-//		casas.stream().forEach(c -> {
-//			nombresPersonajes.addAll(g.miembrosCasa(c));
-//		});
 		
 		List<String> nombresPersonajes = g.getVertices().stream().map(Vertice<PersonajeGOT>::getDatos)
 				.map(PersonajeGOT::getNombre).collect(Collectors.toList());

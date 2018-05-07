@@ -1,6 +1,4 @@
-package aristas;
-
-import grafos.Vertice;
+package adsof1718.grafos;
 
 public abstract class Arista<T> {
 	

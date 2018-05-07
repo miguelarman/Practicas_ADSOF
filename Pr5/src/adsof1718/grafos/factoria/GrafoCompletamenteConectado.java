@@ -1,7 +1,7 @@
-package grafos;
+package adsof1718.grafos.factoria;
 
-import factoria.FactoriaGrafos;
-import interfaces.IGrafo;
+import adsof1718.grafos.GrafoNoDirigido;
+import adsof1718.grafos.Vertice;
 
 public class GrafoCompletamenteConectado<T> extends GrafoNoDirigido<T>{
 	

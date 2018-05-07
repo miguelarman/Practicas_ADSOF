@@ -1,6 +1,4 @@
-package aristas;
-
-import grafos.Vertice;
+package adsof1718.grafos;
 
 public class AristaNoDirigida<T> extends Arista<T> {
 

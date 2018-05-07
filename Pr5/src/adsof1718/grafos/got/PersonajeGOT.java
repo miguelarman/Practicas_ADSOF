@@ -1,4 +1,4 @@
-package grafos;
+package adsof1718.grafos.got;
 
 public class PersonajeGOT {
 	
