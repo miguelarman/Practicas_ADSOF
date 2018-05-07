@@ -9,8 +9,6 @@ public class GrafoCompletamenteConectado<T> extends GrafoNoDirigido<T>{
 	public Vertice<T> addVertice(T datos) {
 		Vertice<T> vertice = new Vertice<T>(datos);
 		
-		// TODO comprobar si ya está
-		
 		vertices.values().stream().forEach(v -> {
 			this.addArco(v, vertice, 0);
 			numAristas++;

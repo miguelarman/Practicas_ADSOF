@@ -21,8 +21,6 @@ public abstract class Grafo<T> implements IGrafo<T>{
 
 	public Vertice<T> addVertice(T datos) {
 		Vertice<T> vertice = new Vertice<T>(datos);
-		
-		// TODO comprobar si ya está
 
 		int id = numVertices + 1;
 
